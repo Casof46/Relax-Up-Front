@@ -15,7 +15,7 @@ import { RouterLink, RouterModule } from '@angular/router';
 })
 export class ListarComponent implements OnInit{
   datasource: MatTableDataSource<Relaxup> = new MatTableDataSource();
-  displayedColumns:string[]=['c1','c2','c3','c4','c5','c6','c7']
+  displayedColumns:string[]=['c1','c2','c3','c4','c5','c6','c7','accion01','accion02']
 
   constructor(private re:RelaxupService){}
   ngOnInit(): void {
@@ -29,7 +29,7 @@ export class ListarComponent implements OnInit{
   delete(id:number){
     this.re.delete(id).subscribe(data=>{
     this.re.list().subscribe((data)=>{
-      this.re.setList(data);
+    this.re.setList(data);
     })
     })
   }

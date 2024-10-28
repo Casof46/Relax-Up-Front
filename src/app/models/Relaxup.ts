@@ -1,3 +1,4 @@
+
 export class Relaxup{
     idUsuario:number=0
     nombreUsuario:string=""
@@ -5,5 +6,5 @@ export class Relaxup{
     constrasenaUsuario:string=""
     progresoUsuario:number=0
     telefonoUsuario:number=0
-    idrol:number=0
+    nombreRol:String=""
 }
