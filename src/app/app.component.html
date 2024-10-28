@@ -1,0 +1,13 @@
+<mat-toolbar class="custom-toolbar">
+  
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuPlanes" style="color: white">
+      <mat-icon>menu</mat-icon>Plan
+    </button>
+  </div>
+</mat-toolbar>
+<mat-menu #menuPlanes="matMenu">
+  <button mat-menu-item routerLink="/planes">Listar</button>
+  <button mat-menu-item routerLink="/planes/nuevo">Registrar</button>
+</mat-menu>
+<router-outlet></router-outlet>
