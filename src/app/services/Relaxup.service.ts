@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpContext } from '@angular/common/http';
-import { Relaxup } from '../models/Relaxup';
+import { Usuario } from '../models/Relaxup';
 import { Subject } from 'rxjs';
 
 const base_url = environment.base;
@@ -9,31 +9,31 @@ const base_url = environment.base;
 @Injectable({
     providedIn:'root',
 })
-export class RelaxupService{
+export class UsuarioService{
     private url =`${base_url}/usuarios`;
-    private listaCambio = new Subject<Relaxup[]>();
+    private listaCambio = new Subject<Usuario[]>();
 
     constructor(private http: HttpClient){}
 
     list(){
-        return this.http.get<Relaxup[]>(this.url);
+        return this.http.get<Usuario[]>(this.url);
     }
-    Insert(r:Relaxup){
+    Insert(r:Usuario){
         return this.http.post(this.url,r);
     }
     getList(){
         return this.listaCambio.asObservable();
     }
-    setList(listanueva: Relaxup[]){
+    setList(listanueva: Usuario[]){
         this.listaCambio.next(listanueva);
     }
     delete(id:number){
         return this.http.delete(`${this.url}/${id}`);
     }
     listId(id:number){
-        return this.http.get<Relaxup>(`${this.url}/${id}`);
+        return this.http.get<Usuario>(`${this.url}/${id}`);
     }
-    update(re:Relaxup){
+    update(re:Usuario){
         return this.http.put(this.url,re);
     }
 }

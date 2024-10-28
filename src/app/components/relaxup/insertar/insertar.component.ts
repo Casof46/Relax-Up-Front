@@ -7,8 +7,8 @@ import {
   ReactiveFormsModule,
   Validators,
  } from '@angular/forms';
- import { Relaxup } from '../../../models/Relaxup';
- import { RelaxupService } from '../../../services/Relaxup.service';
+ import { Usuario } from '../../../models/Relaxup';
+ import { UsuarioService } from '../../../services/Relaxup.service';
  import { ActivatedRoute,Params,Router,RouterLink} from '@angular/router';
  import { MatInputModule } from '@angular/material/input';
  import { MatFormFieldModule } from '@angular/material/form-field';
@@ -33,7 +33,7 @@ import {
 })
 export class InsertarComponent implements OnInit{
 form:FormGroup = new FormGroup({});
-relaxup: Relaxup = new Relaxup();
+relaxup: Usuario = new Usuario();
 id: number=0;
 edicion: boolean=false;
 
@@ -43,7 +43,7 @@ listarol:{value:string; viewvalue:string}[]=[
   {value:'asistente',viewvalue:'asistente'}
 ];
 constructor(
-  private rlx:RelaxupService,
+  private usuario:UsuarioService,
   private FormBuilder:FormBuilder,
   private router:Router,
   private route: ActivatedRoute
@@ -76,16 +76,16 @@ insertar():void{
     this.relaxup.nombreRol=this.form.value.nombreRol;
     if(this.edicion){
       //update
-      this.rlx.update(this.relaxup).subscribe((data)=>{
-        this.rlx.list().subscribe((data)=>{
-          this.rlx.setList(data);
+      this.usuario.update(this.relaxup).subscribe((data)=>{
+        this.usuario.list().subscribe((data)=>{
+          this.usuario.setList(data);
         });
       });
     }else{
       //insert
-      this.rlx.Insert(this.relaxup).subscribe((data)=>{
-        this.rlx.list().subscribe((data)=>{
-          this.rlx.setList(data);
+      this.usuario.Insert(this.relaxup).subscribe((data)=>{
+        this.usuario.list().subscribe((data)=>{
+          this.usuario.setList(data);
         });
       });
     }
@@ -94,7 +94,7 @@ insertar():void{
 }
 init(){
   if(this.edicion){
-    this.rlx.listId(this.id).subscribe((data)=>{
+    this.usuario.listId(this.id).subscribe((data)=>{
     this.form= new FormGroup({
     idUsuario:new FormControl(data.idUsuario),
     nombreUsuario:new FormControl(data.nombreUsuario),

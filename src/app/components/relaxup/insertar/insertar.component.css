@@ -46,3 +46,6 @@ mat-form-field .mat-label {
 .mat-form-field:hover .mat-form-field-outline {
   border-color: #0056b3; /* Color del borde al pasar el ratón */
 }
+.mat-form-field {
+  width: 100%;
+}

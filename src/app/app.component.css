@@ -1,0 +1,16 @@
+.custom-toolbar {
+    position: fixed; /* Mantener la barra fija en la parte superior */
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #3f51b5; /* Color de fondo */
+    z-index: 1000; /* Asegurarte de que esté en la parte superior */
+    height: 64px; /* Altura estándar de la toolbar */
+    color: white; /* Color del texto */
+}
+.button{
+    position: center;
+    top: 0;
+    left: 0;
+    right: 0;
+}

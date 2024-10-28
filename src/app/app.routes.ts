@@ -9,7 +9,8 @@ export const routes: Routes = [
         path: 'relaxup', component:RelaxupComponent,
         children: [
             { path: 'nuevo',component: InsertarComponent},
-            { path: 'ediciones/:id',component:InsertarComponent}
+            { path: 'ediciones/:id',component:InsertarComponent},
+            { path: 'rol',component:RelaxupComponent}
         ],
     },
 ];

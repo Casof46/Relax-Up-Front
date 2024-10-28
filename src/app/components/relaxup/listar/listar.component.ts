@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Relaxup } from '../../../models/Relaxup';
+import { Usuario } from '../../../models/Relaxup';
 import { MatTableDataSource,MatTableModule } from '@angular/material/table';
-import { RelaxupService } from '../../../services/Relaxup.service';
+import { UsuarioService } from '../../../services/Relaxup.service';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterModule } from '@angular/router';
 
@@ -14,10 +14,10 @@ import { RouterLink, RouterModule } from '@angular/router';
   styleUrl: './listar.component.css'
 })
 export class ListarComponent implements OnInit{
-  datasource: MatTableDataSource<Relaxup> = new MatTableDataSource();
+  datasource: MatTableDataSource<Usuario> = new MatTableDataSource();
   displayedColumns:string[]=['c1','c2','c3','c4','c5','c6','c7','accion01','accion02']
 
-  constructor(private re:RelaxupService){}
+  constructor(private re:UsuarioService){}
   ngOnInit(): void {
       this.re.list().subscribe(data=>{
         this.datasource=new MatTableDataSource(data)
