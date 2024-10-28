@@ -1,0 +1,12 @@
+<mat-toolbar class="custom-toolbar">
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuRol" style="color: white">
+      <mat-icon>menu</mat-icon>Rol
+    </button>
+  </div>
+</mat-toolbar>
+<mat-menu #menuRol="matMenu">
+  <button mat-menu-item routerLink="/roles">Listar</button>
+  <button mat-menu-item routerLink="/roles/nuevo">Registrar</button>
+</mat-menu>
+<router-outlet></router-outlet>
