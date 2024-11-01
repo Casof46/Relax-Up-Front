@@ -6,11 +6,12 @@ import { InsertarComponent } from './components/relaxup/insertar/insertar.compon
 
 export const routes: Routes = [
     {
-        path: 'relaxup', component:RelaxupComponent,
+        path: 'usuarios', component:RelaxupComponent,
         children: [
             { path: 'nuevo',component: InsertarComponent},
             { path: 'ediciones/:id',component:InsertarComponent},
-            { path: 'rol',component:RelaxupComponent}
+            { path: 'rol',component:RelaxupComponent}  
         ],
+
     },
 ];

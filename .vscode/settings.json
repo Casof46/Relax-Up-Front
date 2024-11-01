@@ -1,0 +1,6 @@
+{
+    "exportall.config.relExclusion": [
+        "/src/app/components/relaxup/insertar/insertar.component.ts",
+        "/src/app/app.component.ts"
+    ]
+}

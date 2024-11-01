@@ -1,3 +1,5 @@
+import { LargeNumberLike } from "node:crypto"
+
 export class Usuario{
     idUsuario:number=0
     nombreUsuario:string=""
@@ -5,7 +7,7 @@ export class Usuario{
     constrasenaUsuario:string=""
     progresoUsuario:number=0
     telefonoUsuario:number=0
-    nombreRol:String=""
+    idRol:number=0
 }
 export class Rol{
     idRol:string=""

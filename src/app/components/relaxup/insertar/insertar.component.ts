@@ -1,12 +1,5 @@
 import { Component,NgModule, OnInit } from '@angular/core';
-import { 
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
- } from '@angular/forms';
+import { FormBuilder,FormControl,FormGroup,FormsModule,ReactiveFormsModule,Validators } from '@angular/forms';
  import { Usuario } from '../../../models/Relaxup';
  import { UsuarioService } from '../../../services/Relaxup.service';
  import { ActivatedRoute,Params,Router,RouterLink} from '@angular/router';
@@ -48,6 +41,7 @@ constructor(
   private router:Router,
   private route: ActivatedRoute
 ){}
+
 ngOnInit(): void {
     this.route.params.subscribe((data:Params)=>{
       this.id=data['id'];
@@ -62,7 +56,7 @@ ngOnInit(): void {
     constrasenaUsuario:['',Validators.required],
     progresoUsuario:['',[Validators.required,Validators.pattern(`^[0-100]+$`)]],
     telefonoUsuario:['',Validators.required],
-    nombreRol:['',Validators.required],
+    idRol:['',Validators.required],
     });
 }
 insertar():void{
@@ -73,7 +67,7 @@ insertar():void{
     this.relaxup.constrasenaUsuario=this.form.value.constrasenaUsuario;
     this.relaxup.progresoUsuario=this.form.value.progresoUsuario;
     this.relaxup.telefonoUsuario=this.form.value.telefonoUsuario;
-    this.relaxup.nombreRol=this.form.value.nombreRol;
+    this.relaxup.idRol=this.form.value.idRol;
     if(this.edicion){
       //update
       this.usuario.update(this.relaxup).subscribe((data)=>{
@@ -102,7 +96,7 @@ init(){
     constrasenaUsuario:new FormControl(data.constrasenaUsuario),
     progresoUsuario:new FormControl(data.progresoUsuario),
     telefonoUsuario:new FormControl(data.telefonoUsuario),
-    nombreRol:new FormControl(data.nombreRol),
+    idRol:new FormControl(data.idRol),
       });
     });
   }

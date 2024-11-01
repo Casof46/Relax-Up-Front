@@ -1,5 +1,6 @@
 .custom-toolbar {
     position: fixed; /* Mantener la barra fija en la parte superior */
+    height: 64px; /* Adjust as needed */
     top: 0;
     left: 0;
     right: 0;
