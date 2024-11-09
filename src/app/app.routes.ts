@@ -1,15 +1,13 @@
 import { Routes } from '@angular/router';
-import { RelaxupComponent } from './components/relaxup/relaxup.component';
-import path from 'path';
-import { Component } from '@angular/core';
-import { InsertarComponent } from './components/relaxup/insertar/insertar.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { UsuarioRegistrarComponent } from './components/usuario/usuario-registrar/usuario-registrar.component';
 
 export const routes: Routes = [
     {
-        path: 'relaxup', component:RelaxupComponent,
-        children: [
-            { path: 'nuevo',component: InsertarComponent},
-            { path: 'ediciones/:id',component:InsertarComponent}
-        ],
-    },
+        path: 'usuarios', component:UsuarioComponent,
+        children:[
+            {path: 'nuevo',component:UsuarioRegistrarComponent},
+            {path:'ediciones/:id',component:UsuarioRegistrarComponent}
+        ]
+    }
 ];

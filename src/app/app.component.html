@@ -1,13 +1,13 @@
-<mat-toolbar class="custom-toolbar">
-  <mat-icon>menu</mat-icon>
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuCiudad" style="color: white">
-      Ciudad
+<mat-toolbar class="custom-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayout="row">
+    <button mat-button [matMenuTriggerFor]="menuUsuario" style="color: white">
+      <mat-icon>group</mat-icon>
+      Usuario
     </button>
   </div>
 </mat-toolbar>
-<mat-menu #menuCiudad="matMenu">
-  <button mat-menu-item routerLink="/relaxup">Listar</button>
-  <button mat-menu-item routerLink="/relaxup/nuevo">Registrar</button>
+<mat-menu #menuUsuario="matMenu">
+  <button mat-menu-item routerLink="/usuarios">Listar</button>
+  <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
 </mat-menu>
 <router-outlet></router-outlet>
