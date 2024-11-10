@@ -1,1 +1,45 @@
-<p>usuario-registrar works!</p>
+<div class="title-container">
+    <div class="container" style="text-align: center; margin: 5%;">
+      <h1>Registro de papeletas</h1>
+    </div>
+    <div class="container" style="text-align: center;">
+      <form [formGroup]="form" (ngSubmit)="insertar()">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Id</mat-label>
+          <input matInput placeholder="number" formControlName="idUsuario" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="serie del ticket" formControlName="nombreUsuario" />
+        </mat-form-field>
+        <br />
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Correo</mat-label>
+          <input matInput placeholder="Correo" formControlName="correoUsuario" />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Contraseña</mat-label>
+          <textarea matInput placeholder="descripcion ticket" formControlName="constrasnaUsuario"></textarea>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Progreso</mat-label>
+          <textarea matInput placeholder="descripcion ticket" formControlName="progresoUsuario"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Rol id</mat-label>
+          <mat-select formControlName="ci">
+            <mat-option *ngFor="let rol of listarol" [value]="rol.value">
+              {{ rol.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div style="text-align: center;">
+          <button mat-flat-button color="warn">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -1,1 +1,19 @@
-<p>rol-registrar works!</p>
+<div class="title-container">
+    <div class="container" style="text-align: center;margin:5%"><h1>Registro de roles</h1></div>
+    <div class="container" style="text-align: center">
+      <form [formGroup]="form" (submit)="insertar()" >
+        <mat-form-field class="example-full-width" **ngIf="edicion">
+          <mat-label>Id</mat-label>
+          <input matInput placeholder="number" formControlName="idRol" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>nombre del rol</mat-label>
+          <input matInput placeholder="Ejem. Lima" formControlName="nombreRol" />
+        </mat-form-field>
+        <div style="text-align: center;">
+          <button mat-flat-button  color="warn">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
