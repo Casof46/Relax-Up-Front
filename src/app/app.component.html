@@ -4,10 +4,26 @@
       <mat-icon>group</mat-icon>
       Usuario
     </button>
+    <button mat-button [matMenuTriggerFor]="menuRol" style="color: white">
+      <mat-icon>security</mat-icon>
+      Rol
+    </button>
+    <button mat-button [matMenuTriggerFor]="menueventos" style="color: white">
+      <mat-icon>list</mat-icon>
+      Eventos
+    </button>
   </div>
 </mat-toolbar>
 <mat-menu #menuUsuario="matMenu">
   <button mat-menu-item routerLink="/usuarios">Listar</button>
   <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuRol="matMenu">
+  <button mat-menu-item routerLink="/rol">Listar</button>
+  <button mat-menu-item routerLink="/rol/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menueventos="matMenu">
+  <button mat-menu-item routerLink="/eventos">Listar</button>
+  <button mat-menu-item routerLink="/eventos/nuevo">Registrar</button>
 </mat-menu>
 <router-outlet></router-outlet>
