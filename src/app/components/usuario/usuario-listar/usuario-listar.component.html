@@ -1,6 +1,6 @@
 <div class="container">
     <div style="text-align: center; margin: 5%;">
-      <h1>List Traffic Ticket</h1>
+      <h1>Lista Usuario</h1>
     </div>
     <div>
       <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
@@ -43,13 +43,13 @@
         <ng-container matColumnDef="accion01">
           <th mat-header-cell *matHeaderCellDef> Eliminar </th>
           <td mat-cell *matCellDef="let element">
-            <mat-icon style="color: red" (click)="delete(element.idRol)">delete</mat-icon>
+            <mat-icon style="color: red" (click)="delete(element.idUsuario)">delete</mat-icon>
           </td>
         </ng-container>
   
         <ng-container matColumnDef="accion02">
           <th mat-header-cell *matHeaderCellDef> Actualizar </th>
-          <td mat-cell *matCellDef="let element" [routerLink]="['ediciones', element.idRol]">
+          <td mat-cell *matCellDef="let element" [routerLink]="['ediciones', element.idUsuario]">
             <mat-icon style="color: red">edit</mat-icon>
           </td>
         </ng-container>

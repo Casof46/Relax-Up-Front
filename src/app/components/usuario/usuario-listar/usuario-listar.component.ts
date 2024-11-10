@@ -14,7 +14,7 @@ import { UsuarioService } from '../../../services/usuario.service';
 })
 export class UsuarioListarComponent implements OnInit{
   datasource: MatTableDataSource<Usuario> = new MatTableDataSource();
-  displayedColumns:string[]=['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'accion01', 'accion02']
+  displayedColumns:string[]=['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7']
   constructor(private usuario:UsuarioService){}
   ngOnInit(): void {
   this.usuario.list().subscribe(data=>{
@@ -24,12 +24,17 @@ export class UsuarioListarComponent implements OnInit{
     this.datasource = new MatTableDataSource(data);
   })
   }
-  delete(id:number){
-    this.usuario.delete(id).subscribe(data=>{
-      this.usuario.list().subscribe((data)=>{
-        this.usuario.setList(data)
-      })
-    })
+  delete(id: number) {
+    this.usuario.delete(id).subscribe({
+      next: (data) => {
+        this.usuario.list().subscribe((data) => {
+          this.usuario.setList(data);
+        });
+      },
+      error: (err) => {
+        console.error('Delete failed', err);
+      }
+    });
   }
 
 }

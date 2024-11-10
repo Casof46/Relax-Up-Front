@@ -1,6 +1,6 @@
 import { Rol } from "./Rol"
 export class Usuario{
-    idUsuario:string=""
+    idUsuario:number=0
     nombreUsuario:string=""
     correoUsuario:string=""
     telefonoUsuario:string=""

@@ -4,11 +4,11 @@
       <form [formGroup]="form" (submit)="insertar()" >
         <mat-form-field class="example-full-width" **ngIf="edicion">
           <mat-label>Id</mat-label>
-          <input matInput placeholder="number" formControlName="idRol" />
+          <input matInput placeholder="id" formControlName="IdRol" />
         </mat-form-field>
         <mat-form-field>
           <mat-label>nombre del rol</mat-label>
-          <input matInput placeholder="Ejem. Lima" formControlName="nombreRol" />
+          <input matInput placeholder="nombre" formControlName="NombreRol"/>
         </mat-form-field>
         <div style="text-align: center;">
           <button mat-flat-button  color="warn">Registrar</button>

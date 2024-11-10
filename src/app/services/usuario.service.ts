@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { Usuario } from '../models/Usuario';
 import { Rol } from '../models/Rol';
+import { useAnimation } from '@angular/animations';
+import { userInfo } from 'os';
 
 const base_url = environment.base;
 @Injectable({
@@ -17,8 +19,8 @@ export class UsuarioService {
   list(){
     return this.http.get<Usuario[]>(this.url);
   }
-  insert(usuario:Usuario){
-    return this.http.post(this.url,usuario)
+  insert(us:Usuario){
+    return this.http.post(this.url,us)
   }
   getList() {
     return this.listacambio.asObservable();
@@ -26,7 +28,7 @@ export class UsuarioService {
   setList(listaNueva: Usuario[]) {
     this.listacambio.next(listaNueva);
   }
-  delete(id:number){
+  delete(id: number) {
     return this.http.delete(`${this.url}/${id}`);
   }
   listId(id:number){
@@ -34,8 +36,5 @@ export class UsuarioService {
   }
   update(usuario:Usuario){
     return this.http.put(this.url,usuario);
-  }
-  getrolids():Observable<Rol[]>{
-    return this.http.get<Rol[]>(`${base_url}/rol`)
   }
 }

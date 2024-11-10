@@ -33,52 +33,54 @@ export class RolRegistrarComponent implements OnInit{
   id: number = 0;
   edicion: boolean = false;
   constructor(
-    private Rol: RolserviceService,
+    private rolservice: RolserviceService,
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
-      this.route.params.subscribe((data:Params)=>{
-        this.id = data['id'];
-        this.edicion = data['id'] != null;
-        this.init()
-      });
-      this.form=this.formBuilder.group({
-        idRol:[''],
-        nombreRol:['',Validators.required]
-      });
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = data['id'] > 0;
+      this.init();
+    });
+
+    this.form = this.formBuilder.group({
+      IdRol: [''],
+      NombreRol: ['', Validators.required],
+    });
   }
-  insertar():void{
+  insertar(): void {
     if (this.form.valid) {
-      this.rol.idRol=this.form.value.idRol;
-      this.rol.nombreRol=this.form.value.nombreRol;
-      if(this.edicion){
+      this.rol.idRol = this.form.value.IdRol;
+      this.rol.nombreRol = this.form.value.NombreRol;
+      if (this.edicion) {
         //update
-        this.Rol.update(this.rol).subscribe((data) => {
-          this.Rol.list().subscribe((data) => {
-            this.Rol.setList(data);
-          });
+        this.rolservice.update(this.rol).subscribe((data) => {
+          this.rolservice.list().subscribe((data) => {
+            this.rolservice.setList(data);
+          }); 
         });
-      }else{
+      } else {
         //insert
-        this.Rol.insert(this.rol).subscribe((data) => {
-          this.Rol.list().subscribe((data) => {
-            this.Rol.setList(data);
+        this.rolservice.insert(this.rol).subscribe((data) => {
+          this.rolservice.list().subscribe((data) => {
+            this.rolservice.setList(data);
           });
         });
       }
+      /**/
     }
-    this.router.navigate(['Rol']);
+    this.router.navigate(['rol']);
   }
-  init(){
-    if(this.edicion){
-      this.Rol.listId(this.id).subscribe((data)=>{
-        this.form=new FormGroup({
-          idRol:new FormControl(data.idRol),
-          nombreRol:new FormControl(data.nombreRol)
-        })
-      })
+  init() {
+    if (this.edicion) {
+      this.rolservice.listId(this.id).subscribe((data) => {
+        this.form = new FormGroup({
+          IdRol: new FormControl(data.idRol),
+          NombreRol: new FormControl(data.nombreRol),
+        });
+      });
     }
   }
 }
