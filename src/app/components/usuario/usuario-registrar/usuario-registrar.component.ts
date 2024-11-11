@@ -26,44 +26,43 @@ import { NgIf } from '@angular/common';
 })
 export class UsuarioRegistrarComponent implements OnInit{
   form: FormGroup = new FormGroup({});
-  listaRol: Rol[] = [];
+  listarol: Rol[] = [];
   usuario: Usuario = new Usuario();
-
   constructor(
     private formBuilder: FormBuilder,
-    private rolservice: RolserviceService,
+    private Rolservice: RolserviceService,
     private usuarioservice: UsuarioService,
-    private router: Router,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      IdUsuario:[''],
-      NombreUsuario:['',Validators.required],
-      CorreoUsuario:['',Validators.required],
-      TelefonoUsuario:['',Validators.required],
-      ContrasenaUsuario:['',Validators.required],
-      ProgresoUsuario:['',Validators.required],
-      RolUsuario:['',Validators.required],
+      IdUsuario: ['', Validators.required],
+      NombreUsuario: ['', Validators.required],
+      CorreoUsuario: ['', Validators.required],
+      TelefonoUsuario: ['', Validators.required],
+      ContrasenaUsuario: ['', Validators.required],
+      ProgresoUsuario: ['', Validators.required],
+      IdRol: ['', Validators.required],
     });
-    this.rolservice.list().subscribe((data) => {
-      this.listaRol = data;
+    this.Rolservice.list().subscribe((data) => {
+      this.listarol = data;
     });
   }
   insertar(): void {
-    if(this.form.valid){
-      this.usuario.idUsuario=this.form.value.IdUsuario;
-      this.usuario.nombreUsuario=this.form.value.NombreUsuario
-      this.usuario.correoUsuario=this.form.value.CorreoUsuario
-      this.usuario.telefonoUsuario=this.form.value.TelefonoUsuario
-      this.usuario.contasenaUsuario=this.form.value.ContrasenaUsuario
-      this.usuario.progresoUsuario=this.form.value.ProgresoUsuario
-      this.usuario.rol.idRol=this.form.value.RolUsuario
-        this.usuarioservice.insert(this.usuario).subscribe((data) => {
-          this.usuarioservice.list().subscribe((data) => {
-            this.usuarioservice.setList(data);
-          });
+    if (this.form.valid) {
+      this.usuario.idUsuario = this.form.value.IdUsuario;
+      this.usuario.nombreUsuario = this.form.value.NombreUsuario;
+      this.usuario.correoUsuario = this.form.value.CorreoUsuario;
+      this.usuario.telefonoUsuario = this.form.value.TelefonoUsuario;
+      this.usuario.contasenaUsuario = this.form.value.ContrasenaUsuario;
+      this.usuario.progresoUsuario = this.form.value.ProgresoUsuario;
+      this.usuario.rol.idRol = this.form.value.IdRol;
+      this.usuarioservice.insert(this.usuario).subscribe((data) => {
+        this.usuarioservice.list().subscribe((data) => {
+          this.usuarioservice.setList(data);
         });
-        this.router.navigate(['usuarios'])
-      }
+      });
+      this.router.navigate(['usuarios']);
+    }
   }
 }

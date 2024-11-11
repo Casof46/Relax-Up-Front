@@ -5,6 +5,8 @@ import { RolRegistrarComponent } from './components/rol/rol-registrar/rol-regist
 import { UsuarioRegistrarComponent } from './components/usuario/usuario-registrar/usuario-registrar.component';
 import { EventosComponent } from './components/eventos/eventos.component';
 import { EventosRegistrarComponent } from './components/eventos/eventos-registrar/eventos-registrar.component';
+import { UsuariorutinaComponent } from './components/usuariorutina/usuariorutina.component';
+import { UsuariorutinaRegistrarComponent } from './components/usuariorutina/usuariorutina-registrar/usuariorutina-registrar.component';
 
 export const routes: Routes = [
     {
@@ -26,6 +28,12 @@ export const routes: Routes = [
         children:[
             {path: 'nuevo',component:EventosRegistrarComponent},
             {path: 'ediciones/:id',component:EventosRegistrarComponent}
+        ]
+    },
+    {
+        path: 'UsuarioRutina', component:UsuariorutinaComponent,
+        children:[
+            {path: 'nuevo',component:UsuariorutinaRegistrarComponent},
         ]
     }
 ];

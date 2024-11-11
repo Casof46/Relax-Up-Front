@@ -9,8 +9,12 @@
       Rol
     </button>
     <button mat-button [matMenuTriggerFor]="menueventos" style="color: white">
-      <mat-icon>list</mat-icon>
+      <mat-icon>event</mat-icon>
       Eventos
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuurutina" style="color: white">
+      <mat-icon>fitness_center</mat-icon>
+      Usuario Rutina
     </button>
   </div>
 </mat-toolbar>
@@ -25,5 +29,9 @@
 <mat-menu #menueventos="matMenu">
   <button mat-menu-item routerLink="/eventos">Listar</button>
   <button mat-menu-item routerLink="/eventos/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuurutina="matMenu">
+  <button mat-menu-item routerLink="/UsuarioRutina">Listar</button>
+  <button mat-menu-item routerLink="/UsuarioRutina/nuevo">Registrar</button>
 </mat-menu>
 <router-outlet></router-outlet>

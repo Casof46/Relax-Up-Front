@@ -42,8 +42,8 @@
       <br />
       <mat-form-field>
         <mat-label>Rol</mat-label>
-        <mat-select formControlName="RolUsuario">
-          @for (ci of listaRol; track ci) {
+        <mat-select formControlName="IdRol">
+          @for (ci of listarol; track ci) {
           <mat-option [value]="ci.idRol">{{ ci.nombreRol }}</mat-option>
           }
         </mat-select>
