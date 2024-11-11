@@ -1,1 +1,48 @@
-<p>mensajeforo-registrar works!</p>
+<div class="title-container">
+    <div class="container" style="text-align: center; margin: 2%">
+      <h1>Registro de Mensajes en foros</h1>
+    </div>
+    <div class="container" style="text-align: center">
+      <form [formGroup]="form" (submit)="insertar()">
+        <mat-form-field class="example-full-width" >
+          <mat-label>Id</mat-label>
+          <input matInput formControlName="idMensajesForos" />
+        </mat-form-field>
+        <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="contenido" formControlName="contenido" />
+        </mat-form-field>
+  
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Fecha de publicacion</mat-label>
+          <input matInput placeholder="Fecha de publicacion" formControlName="fechaPublicacion" />
+        </mat-form-field>
+   
+        <br />
+        <mat-form-field>
+          <mat-label>Foros</mat-label>
+          <mat-select formControlName="Foros">
+            @for (ci of listaForos; track ci) {
+            <mat-option [value]="ci.idForos">{{ ci.titulo }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-label>Usuario</mat-label>
+            <mat-select formControlName="Usuario">
+              @for (ci of listaUsuario; track ci) {
+              <mat-option [value]="ci.idUsuario">{{ ci.nombreUsuario }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        <div style="text-align: center">
+          <button mat-flat-button color="warn">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

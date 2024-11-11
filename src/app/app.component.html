@@ -12,6 +12,22 @@
       <mat-icon>list</mat-icon>
       Eventos
     </button>
+    <button mat-button [matMenuTriggerFor]="menuforos" style="color: white">
+      <mat-icon>speaker_notes</mat-icon>
+      Foros
+    </button>
+    <button mat-button [matMenuTriggerFor]="menumensajesforos" style="color: white">
+      <mat-icon>subject</mat-icon>
+      Mensajes de Foros
+    </button>
+    <button mat-button [matMenuTriggerFor]="menurutina" style="color: white">
+      <mat-icon>accessibility_new</mat-icon>
+      Rutinas
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuejerciciorutina" style="color: white">
+      <mat-icon>folder_shared</mat-icon>
+      Ejercicios de Rutinas
+    </button>
   </div>
 </mat-toolbar>
 <mat-menu #menuUsuario="matMenu">
@@ -25,5 +41,21 @@
 <mat-menu #menueventos="matMenu">
   <button mat-menu-item routerLink="/eventos">Listar</button>
   <button mat-menu-item routerLink="/eventos/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuforos="matMenu">
+  <button mat-menu-item routerLink="/foros">Listar</button>
+  <button mat-menu-item routerLink="/foros/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menumensajesforos="matMenu">
+  <button mat-menu-item routerLink="/mensajesforos">Listar</button>
+  <button mat-menu-item routerLink="/mensajesforos/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menurutina="matMenu">
+  <button mat-menu-item routerLink="/rutina">Listar</button>
+  <button mat-menu-item routerLink="/rutina/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuejerciciorutina="matMenu">
+  <button mat-menu-item routerLink="/ejerciciorutina">Listar</button>
+  <button mat-menu-item routerLink="/ejerciciorutina/nuevo">Registrar</button>
 </mat-menu>
 <router-outlet></router-outlet>

@@ -1,1 +1,39 @@
-<p>ejerciciorutina-registrar works!</p>
+<div class="title-container">
+    <div class="container" style="text-align: center; margin: 2%">
+      <h1>Registro de Ejercicios de Rutinas</h1>
+    </div>
+    <div class="container" style="text-align: center">
+      <form [formGroup]="form" (submit)="insertar()">
+        <mat-form-field class="example-full-width" >
+          <mat-label>Id</mat-label>
+          <input matInput formControlName="idEjercicioRutina" />
+        </mat-form-field>
+        <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Titulo</mat-label>
+          <input matInput placeholder="titulo" formControlName="tituloEjercicioRutina" />
+        </mat-form-field>
+  
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Descripcion</mat-label>
+          <input matInput placeholder="Descripcion" formControlName="descripcionEjercicioRutina" />
+        </mat-form-field>
+  
+        <br />
+
+        <mat-form-field>
+          <mat-label>Rutina</mat-label>
+          <mat-select formControlName="Rutina">
+            @for (ci of listaRutina; track ci) {
+            <mat-option [value]="ci.idRutina">{{ ci.nombreRutina }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <div style="text-align: center">
+          <button mat-flat-button color="warn">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
