@@ -50,6 +50,7 @@ export class EjerciciorutinaRegistrarComponent {
       this.ejerciciorutina.tituloEjercicioRutina=this.form.value.tituloEjercicioRutina
       this.ejerciciorutina.descripcionEjercicioRutina=this.form.value.descripcionEjercicioRutina
       this.ejerciciorutina.rutina.idRutina=this.form.value.RutinaEjercicioRutina
+      
         this.ejerciciorutinaservice.insert(this.ejerciciorutina).subscribe((data) => {
           this.ejerciciorutinaservice.list().subscribe((data) => {
             this.ejerciciorutinaservice.setList(data);
