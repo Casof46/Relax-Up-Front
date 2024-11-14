@@ -2,3 +2,17 @@
     background-color:rgba(255,152,0,255);
     color: white;
   }
+  .custom-menu-item {   
+    color: white; 
+    &:hover {
+      color: white; 
+    }
+  }
+  .left-menu {
+    display: flex; /* Permite alinear los botones horizontalmente */
+  }
+  
+  .right-menu {
+    margin-left: auto; /* Empuja el menú de usuarios a la derecha */
+  }
+  

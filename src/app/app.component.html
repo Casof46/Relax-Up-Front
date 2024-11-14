@@ -1,23 +1,32 @@
-<mat-toolbar class="custom-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+<mat-toolbar class="custom-toolbar" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="verificar()">
       <div fxLayout="row">
-    <button mat-button [matMenuTriggerFor]="menuUsuario" style="color: white">
+        <button mat-button [routerLink]="['/homes']" style="color: white">
+          <mat-icon>home</mat-icon>Home
+        </button>
+    <button mat-button [matMenuTriggerFor]="menuUsuario" style="color: white"  *ngIf="isTester()">
       <mat-icon>group</mat-icon>
       Usuario
     </button>
-    <button mat-button [matMenuTriggerFor]="menuRol" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuRol" style="color: white" *ngIf="isTester()">
       <mat-icon>security</mat-icon>
       Rol
     </button>
-    <button mat-button [matMenuTriggerFor]="menueventos" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menueventos" style="color: white" *ngIf="isTester()">
       <mat-icon>event</mat-icon>
       Eventos
     </button>
-    <button mat-button [matMenuTriggerFor]="menuurutina" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuurutina" style="color: white" *ngIf="isDeveloper()">
       <mat-icon>fitness_center</mat-icon>
       Usuario Rutina
     </button>
   </div>
+  <div class="right-menu">
+    <button mat-button [matMenuTriggerFor]="menuSalir" style="color: white" >
+      <mat-icon>person</mat-icon>Usuario
+    </button>
+  </div>
 </mat-toolbar>
+
 <mat-menu #menuUsuario="matMenu">
   <button mat-menu-item routerLink="/usuarios">Listar</button>
   <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
