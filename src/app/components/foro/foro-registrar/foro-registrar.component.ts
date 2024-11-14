@@ -22,7 +22,7 @@ import { UsuarioService } from '../../../services/usuario.service';
   templateUrl: './foro-registrar.component.html',
   styleUrl: './foro-registrar.component.css'
 })
-export class ForoRegistrarComponent {
+export class ForoRegistrarComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   listaUsuario: Usuario[] = [];
   foros: Foros = new Foros();
@@ -35,7 +35,7 @@ export class ForoRegistrarComponent {
   ) {}
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      IdForos:[''],
+      IdForos:['', Validators.required],
       Titulo:['',Validators.required],
       IdUsuario:['',Validators.required],
     });
@@ -45,7 +45,7 @@ export class ForoRegistrarComponent {
   }
   insertar(): void {
     if(this.form.valid){
-      this.foros.idForos=this.form.value.IdUsuario;
+      this.foros.idForos=this.form.value.IdForos;
       this.foros.titulo=this.form.value.Titulo;
       this.foros.usuario.idUsuario=this.form.value.IdUsuario
         this.forosservice.insert(this.foros).subscribe((data) => {
@@ -53,7 +53,7 @@ export class ForoRegistrarComponent {
             this.forosservice.setList(data);
           });
         });
-        this.router.navigate(['foros'])
+        this.router.navigate(['foross'])
       }
   }
 }

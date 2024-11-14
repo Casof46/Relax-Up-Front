@@ -22,7 +22,7 @@ import { Rutina } from '../../../models/Rutina';
   templateUrl: './rutina-registrar.component.html',
   styleUrl: './rutina-registrar.component.css'
 })
-export class RutinaRegistrarComponent {
+export class RutinaRegistrarComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   listaTecnicasRelajacion: TecnicasRelajacion[] = [];
   rutina: Rutina = new Rutina();
@@ -35,11 +35,11 @@ export class RutinaRegistrarComponent {
   ) {}
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      IdRutina:[''],
+      IdRutina:['',Validators.required],
       nombreRutina:['',Validators.required],
       descripcionRutina:['',Validators.required],
-      duracionRutinna:['',Validators.required],
-      TernicaRelajacionRutina:['',Validators.required],
+      duracionRutina:['',Validators.required],
+      TecnicaRelajacionRutina:['',Validators.required],
     });
     this.tecnicasrelajacionservice.list().subscribe((data) => {
       this.listaTecnicasRelajacion = data;
@@ -51,7 +51,7 @@ export class RutinaRegistrarComponent {
       this.rutina.nombreRutina=this.form.value.nombreRutina
       this.rutina.descripcionRutina=this.form.value.descripcionRutina
       this.rutina.duracionRutina=this.form.value.duracionRutina
-      this.rutina.tecnicasRelajacion.idTecnicaRelajacion=this.form.value.TernicaRelajacionRutina
+      this.rutina.tecnicasRelajacion.idTecnicaRelajacion=this.form.value.TecnicaRelajacionRutina
         this.rutinaservice.insert(this.rutina).subscribe((data) => {
           this.rutinaservice.list().subscribe((data) => {
             this.rutinaservice.setList(data);

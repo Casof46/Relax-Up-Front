@@ -46,9 +46,9 @@ export class EjerciciorutinaRegistrarComponent {
   }
   insertar(): void {
     if(this.form.valid){
-      this.ejerciciorutina.idEjercicioRutina=this.form.value.IdUsuario;
-      this.ejerciciorutina.tituloEjercicioRutina=this.form.value.NombreUsuario
-      this.ejerciciorutina.descripcionEjercicioRutina=this.form.value.CorreoUsuario
+      this.ejerciciorutina.idEjercicioRutina=this.form.value.idEjercicioRutina;
+      this.ejerciciorutina.tituloEjercicioRutina=this.form.value.tituloEjercicioRutina
+      this.ejerciciorutina.descripcionEjercicioRutina=this.form.value.descripcionEjercicioRutina
       this.ejerciciorutina.rutina.idRutina=this.form.value.RutinaEjercicioRutina
         this.ejerciciorutinaservice.insert(this.ejerciciorutina).subscribe((data) => {
           this.ejerciciorutinaservice.list().subscribe((data) => {

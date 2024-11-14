@@ -6,25 +6,31 @@
       <form [formGroup]="form" (submit)="insertar()">
         <mat-form-field class="example-full-width" >
           <mat-label>Id</mat-label>
-          <input matInput formControlName="idMensajesForos" />
+          <input matInput formControlName="idMensajesFoross" />
         </mat-form-field>
         <br />
   
         <mat-form-field class="example-full-width">
-          <mat-label>Nombre</mat-label>
+          <mat-label>Contenido</mat-label>
           <input matInput placeholder="contenido" formControlName="contenido" />
         </mat-form-field>
   
         <br />
-        <mat-form-field class="example-full-width">
-          <mat-label>Fecha de publicacion</mat-label>
-          <input matInput placeholder="Fecha de publicacion" formControlName="fechaPublicacion" />
+        <mat-form-field>
+          <mat-label>Fecha</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="FechaPublicacion" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-   
         <br />
+
         <mat-form-field>
           <mat-label>Foros</mat-label>
-          <mat-select formControlName="Foros">
+          <mat-select formControlName="mensajesforosforos">
             @for (ci of listaForos; track ci) {
             <mat-option [value]="ci.idForos">{{ ci.titulo }}</mat-option>
             }
@@ -33,7 +39,7 @@
         <br />
         <mat-form-field>
             <mat-label>Usuario</mat-label>
-            <mat-select formControlName="Usuario">
+            <mat-select formControlName="mensajesforosusuarios">
               @for (ci of listaUsuario; track ci) {
               <mat-option [value]="ci.idUsuario">{{ ci.nombreUsuario }}</mat-option>
               }

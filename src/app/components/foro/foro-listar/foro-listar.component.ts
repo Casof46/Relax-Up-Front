@@ -14,20 +14,22 @@ import { ForosService } from '../../../services/foros.service';
 export class ForoListarComponent {
   datasource: MatTableDataSource<Foros> = new MatTableDataSource();
   displayedColumns:string[]=['c1', 'c2', 'c3','accion01','accion02']
-  constructor(private foros:ForosService){}
+  
+  constructor(private forosservice:ForosService){}
+
   ngOnInit(): void {
-  this.foros.list().subscribe(data=>{
+  this.forosservice.list().subscribe(data=>{
     this.datasource = new MatTableDataSource(data)
   });
-  this.foros.getList().subscribe(data=>{
+  this.forosservice.getList().subscribe(data=>{
     this.datasource = new MatTableDataSource(data);
   })
   }
   delete(id: number) {
-    this.foros.delete(id).subscribe({
+    this.forosservice.delete(id).subscribe({
       next: (data) => {
-        this.foros.list().subscribe((data) => {
-          this.foros.setList(data);
+        this.forosservice.list().subscribe((data) => {
+          this.forosservice.setList(data);
         });
       },
       error: (err) => {

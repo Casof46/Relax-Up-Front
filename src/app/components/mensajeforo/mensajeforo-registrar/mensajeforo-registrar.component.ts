@@ -12,14 +12,19 @@ import { Usuario } from '../../../models/Usuario';
 import { MensajeforoService } from '../../../services/mensajeforo.service';
 import { UsuarioService } from '../../../services/usuario.service';
 import { ForosService } from '../../../services/foros.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
+
 @Component({
   selector: 'app-mensajeforo-registrar',
   standalone: true,
+  providers: [provideNativeDateAdapter()],
   imports: [ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
+    MatDatepickerModule,
     NgIf],
   templateUrl: './mensajeforo-registrar.component.html',
   styleUrl: './mensajeforo-registrar.component.css'
@@ -39,9 +44,9 @@ export class MensajeforoRegistrarComponent implements OnInit{
   ) {}
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      idMensajesForos:[''],
+      idMensajesFoross:[''],
       contenido:['',Validators.required],
-      fechaPublicacion:['',Validators.required],
+      FechaPublicacion:['',Validators.required],
       mensajesforosforos:['',Validators.required],
       mensajesforosusuarios:['',Validators.required],
     });
@@ -54,9 +59,9 @@ export class MensajeforoRegistrarComponent implements OnInit{
   }
   insertar(): void {
     if(this.form.valid){
-      this.mensajesforos.idMensajesForos=this.form.value.IdUsuario;
-      this.mensajesforos.contenido=this.form.value.NombreUsuario
-      this.mensajesforos.fechaPublicacion=this.form.value.CorreoUsuario
+      this.mensajesforos.idMensajesForos=this.form.value.idMensajesFoross;
+      this.mensajesforos.contenido=this.form.value.contenido
+      this.mensajesforos.fechaPublicacion=this.form.value.FechaPublicacion
       this.mensajesforos.foros.idForos=this.form.value.mensajesforosforos
       this.mensajesforos.usuario.idUsuario=this.form.value.mensajesforosusuarios
         this.mensajeforoservice.insert(this.mensajesforos).subscribe((data) => {
@@ -64,7 +69,7 @@ export class MensajeforoRegistrarComponent implements OnInit{
             this.mensajeforoservice.setList(data);
           });
         });
-        this.router.navigate(['mensajeforo'])
+        this.router.navigate(['mensajeforos'])
       }
   }
 }
