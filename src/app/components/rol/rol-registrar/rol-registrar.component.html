@@ -1,0 +1,23 @@
+<div class="title-container">
+    <div class="container" style="text-align: center;margin:5%"><h1>Registro de roles</h1></div>
+    <div class="container" style="text-align: center">
+      <form [formGroup]="form" (submit)="insertar()" >
+  
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Código</mat-label>
+          <input matInput  formControlName="rolcodigo" readonly="true"/>
+        </mat-form-field>
+        <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre del rol</mat-label>
+          <input matInput placeholder="Ejem. Paciente" formControlName="rolnombre" />
+        </mat-form-field>
+        <br />
+        
+        <div style="text-align: center;">
+          <button mat-flat-button  color="warn">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
