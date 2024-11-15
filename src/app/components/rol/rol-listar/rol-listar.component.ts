@@ -4,11 +4,11 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink, RouterModule } from '@angular/router';
 import { Rol } from '../../../models/Rol';
 import { RolserviceService } from '../../../services/rolservice.service';
-
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-rol-listar',
   standalone: true,
-  imports: [MatTableModule,MatIconModule,RouterModule,RouterLink],
+  imports: [MatTableModule,MatIconModule,RouterModule,RouterLink,MatSnackBarModule],
   templateUrl: './rol-listar.component.html',
   styleUrl: './rol-listar.component.css'
 })
@@ -16,7 +16,9 @@ export class RolListarComponent implements OnInit{
   datasource:MatTableDataSource<Rol>=new MatTableDataSource();
   displayedColumns:string[]=['c1','c2','accion01','accion02']
 
-  constructor(private rolservice:RolserviceService){}
+  constructor(
+    private rolservice:RolserviceService,     
+    private snackBar: MatSnackBar){}
   ngOnInit(): void {
       this.rolservice.list().subscribe(data=>{
         this.datasource=new MatTableDataSource(data)
@@ -27,9 +29,18 @@ export class RolListarComponent implements OnInit{
   }
   delete(id: number) {
     this.rolservice.delete(id).subscribe((data) => {
-      this.rolservice.list().subscribe((data) => {
-        this.rolservice.setList(data);
-      });
-    });
+        this.rolservice.list().subscribe((data) => {
+          this.rolservice.setList(data);
+        });
+        this.snackBar.open('Se eliminó de manera correcta', 'Cerrar', {
+          duration: 5000,
+        });
+      },(error) => {
+        this.snackBar.open('No se puede eliminar, ya que el rol esta vinculado a un usuario', 'Cerrar', {
+          duration: 5000,
+        });
+      }
+    );
   }
+  
 }

@@ -8,6 +8,6 @@ export class Eventos{
     fechaInicio:Date=new Date(Date.now()) 
     fechaFin:Date=new Date(Date.now())
     hora:string=""
-    confirmacion:string=""
+    confirmacion:boolean=false
     usuario:Usuario=new Usuario()
 }

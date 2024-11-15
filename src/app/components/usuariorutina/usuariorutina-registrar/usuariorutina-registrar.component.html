@@ -1,1 +1,47 @@
-<p>usuariorutina-registrar works!</p>
+<div class="title-container">
+    <div class="container" style="text-align: center; margin: 2%">
+      <h1>Registro de usuario por rutina</h1>
+    </div>
+    <div class="container" style="text-align: center">
+  
+      <form [formGroup]="form" (submit)="insertar()">
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Id</mat-label>
+          <input matInput formControlName="IdUsuarioRutina" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field>
+          <mat-label>Fecha</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="FechaRealizacion" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Progreso</mat-label>
+          <input matInput placeholder="1500" formControlName="Progreso" />
+        </mat-form-field>
+        <br />
+  
+        <mat-form-field>
+          <mat-label>Usuario</mat-label>
+          <mat-select formControlName="idUsuario">
+            @for (ci of listaUsuario; track ci) {
+            <mat-option [value]="ci.idUsuario">{{ ci.nombreUsuario }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <div style="text-align: center">
+          <button mat-flat-button color="warn">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -5,27 +5,66 @@ import { RolRegistrarComponent } from './components/rol/rol-registrar/rol-regist
 import { UsuarioRegistrarComponent } from './components/usuario/usuario-registrar/usuario-registrar.component';
 import { EventosComponent } from './components/eventos/eventos.component';
 import { EventosRegistrarComponent } from './components/eventos/eventos-registrar/eventos-registrar.component';
+import { UsuariorutinaComponent } from './components/usuariorutina/usuariorutina.component';
+import { UsuariorutinaRegistrarComponent } from './components/usuariorutina/usuariorutina-registrar/usuariorutina-registrar.component';
+import { LoginComponent } from './components/login/login.component';
+import { seguridadGuard } from './guard/seguridad.guard';
+import { HomeComponent } from './components/home/home.component';
+import { MusicPlayerComponent } from './components/music-player/music-player.component';
+import { ImagenesgatosComponent } from './components/imagenesgatos/imagenesgatos.component';
 
 export const routes: Routes = [
     {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+    {
         path: 'usuarios', component:UsuarioComponent,
         children:[
-            {path: 'nuevo',component:UsuarioRegistrarComponent},
-            {path: 'ediciones/:id',component:UsuarioRegistrarComponent}
-        ]
+            {path: 'nuevo',component:UsuarioRegistrarComponent}
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path: 'rol', component:RolComponent,
         children:[
             {path: 'nuevo',component:RolRegistrarComponent},
             {path: 'ediciones/:id',component:RolRegistrarComponent}
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path: 'eventos', component:EventosComponent,
         children:[
             {path: 'nuevo',component:EventosRegistrarComponent},
-            {path: 'ediciones/:id',component:EventosRegistrarComponent}
-        ]
+        ],
+        canActivate: [seguridadGuard],
+    },
+    {
+        path: 'UsuarioRutina', component:UsuariorutinaComponent,
+        children:[
+            {path: 'nuevo',component:UsuariorutinaRegistrarComponent},
+        ],
+        canActivate: [seguridadGuard],
+    },
+    {
+      path: 'homes',
+      component: HomeComponent,
+      canActivate: [seguridadGuard],  
+    },
+    {
+        path:'music',
+        component: MusicPlayerComponent,
+        canActivate: [seguridadGuard],  
+    },
+    {
+        path:'gatos',
+        component: ImagenesgatosComponent,
+        canActivate: [seguridadGuard],  
     }
 ];
