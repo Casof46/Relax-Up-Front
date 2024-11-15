@@ -3,21 +3,29 @@
         <button mat-button [routerLink]="['/homes']" style="color: white">
           <mat-icon>home</mat-icon>Home
         </button>
-    <button mat-button [matMenuTriggerFor]="menuUsuario" style="color: white"  *ngIf="isTester()">
+    <button mat-button [matMenuTriggerFor]="menuUsuario" style="color: white"  *ngIf="isDeveloper()">
       <mat-icon>group</mat-icon>
       Usuario
     </button>
-    <button mat-button [matMenuTriggerFor]="menuRol" style="color: white" *ngIf="isTester()">
+    <button mat-button [matMenuTriggerFor]="menuRol" style="color: white" *ngIf="isDeveloper()">
       <mat-icon>security</mat-icon>
       Rol
     </button>
-    <button mat-button [matMenuTriggerFor]="menueventos" style="color: white" *ngIf="isTester()">
+    <button mat-button [matMenuTriggerFor]="menueventos" style="color: white" *ngIf="isDeveloper()">
       <mat-icon>event</mat-icon>
       Eventos
     </button>
     <button mat-button [matMenuTriggerFor]="menuurutina" style="color: white" *ngIf="isDeveloper()">
       <mat-icon>fitness_center</mat-icon>
       Usuario Rutina
+    </button>
+    <button mat-button routerLink="/music" style="color: white" *ngIf="isDeveloper()">
+      <mat-icon>library_music</mat-icon>
+      musica
+    </button>
+    <button mat-button routerLink="/gatos" style="color: white" *ngIf="isDeveloper()">
+      <mat-icon>pets</mat-icon>
+      gatos
     </button>
   </div>
   <div class="right-menu">
@@ -53,4 +61,21 @@
     <span>{{ role }}</span>
   </button>
 </mat-menu>
+<div>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="#">Términos de Uso</a>
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Contacto</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/?locale=es_LA"><img src="assets/facebook.png" alt="facebook"></a>
+        <a href="https://twitter.com/login"><img src="assets/twitter.png" alt="Twitter"></a>
+        <a href="https://www.instagram.com/accounts/login/"><img src="assets/instagram.png" alt="Instagram"></a>
+      </div>
+    </div>
+    <p class="copyrights">2024 RELAX UP. Todos los derechos reservados.</p>
+  </footer>
+</div>
 <router-outlet></router-outlet>

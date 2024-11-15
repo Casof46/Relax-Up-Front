@@ -10,6 +10,8 @@ import { UsuariorutinaRegistrarComponent } from './components/usuariorutina/usua
 import { LoginComponent } from './components/login/login.component';
 import { seguridadGuard } from './guard/seguridad.guard';
 import { HomeComponent } from './components/home/home.component';
+import { MusicPlayerComponent } from './components/music-player/music-player.component';
+import { ImagenesgatosComponent } from './components/imagenesgatos/imagenesgatos.component';
 
 export const routes: Routes = [
     {
@@ -55,4 +57,14 @@ export const routes: Routes = [
       component: HomeComponent,
       canActivate: [seguridadGuard],  
     },
+    {
+        path:'music',
+        component: MusicPlayerComponent,
+        canActivate: [seguridadGuard],  
+    },
+    {
+        path:'gatos',
+        component: ImagenesgatosComponent,
+        canActivate: [seguridadGuard],  
+    }
 ];

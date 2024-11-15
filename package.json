@@ -24,8 +24,12 @@
     "@angular/router": "^18.2.0",
     "@angular/ssr": "^18.2.0",
     "@auth0/angular-jwt": "^5.2.0",
+    "@fortawesome/angular-fontawesome": "^0.15.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "axios": "^1.7.7",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
+    "soundcloud": "^3.3.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
   },
