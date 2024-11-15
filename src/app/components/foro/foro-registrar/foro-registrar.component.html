@@ -1,0 +1,32 @@
+<div class="title-container">
+    <div class="container" style="text-align: center; margin: 2%">
+      <h1>Registro de Foros</h1>
+    </div>
+    <div class="container" style="text-align: center">
+      <form [formGroup]="form" (submit)="insertar()">
+        <mat-form-field class="example-full-width" >
+          <mat-label>Id</mat-label>
+          <input matInput formControlName="IdForos" />
+        </mat-form-field>
+        <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Titulo</mat-label>
+          <input matInput placeholder="Titulo" formControlName="Titulo" />
+        </mat-form-field>
+  
+        <br />
+        <mat-form-field>
+          <mat-label>Id del Usuario</mat-label>
+          <mat-select formControlName="IdUsuario">
+            @for (ci of listaUsuario; track ci) {
+            <mat-option [value]="ci.idUsuario">{{ ci.idUsuario }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <div style="text-align: center">
+          <button mat-flat-button color="warn">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
