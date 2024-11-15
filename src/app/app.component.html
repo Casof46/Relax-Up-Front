@@ -1,15 +1,18 @@
-<mat-toolbar class="custom-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+<mat-toolbar class="custom-toolbar" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="verificar()">
       <div fxLayout="row">
-    <button mat-button [matMenuTriggerFor]="menuUsuario" style="color: white">
+        <button mat-button [routerLink]="['/homes']" style="color: white">
+          <mat-icon>home</mat-icon>Home
+        </button>
+    <button mat-button [matMenuTriggerFor]="menuUsuario" style="color: white"  *ngIf="isDeveloper()">
       <mat-icon>group</mat-icon>
       Usuario
     </button>
-    <button mat-button [matMenuTriggerFor]="menuRol" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuRol" style="color: white" *ngIf="isDeveloper()">
       <mat-icon>security</mat-icon>
       Rol
     </button>
-    <button mat-button [matMenuTriggerFor]="menueventos" style="color: white">
-      <mat-icon>list</mat-icon>
+    <button mat-button [matMenuTriggerFor]="menueventos" style="color: white" *ngIf="isDeveloper()">
+      <mat-icon>event</mat-icon>
       Eventos
     </button>
     <button mat-button [matMenuTriggerFor]="menuforos" style="color: white">
@@ -30,6 +33,7 @@
     </button>
   </div>
 </mat-toolbar>
+
 <mat-menu #menuUsuario="matMenu">
   <button mat-menu-item routerLink="/usuarios">Listar</button>
   <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>

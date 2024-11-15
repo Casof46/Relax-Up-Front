@@ -1,1 +1,75 @@
-<p>eventos-registrar works!</p>
+<div class="title-container">
+    <div class="container" style="text-align: center; margin: 2%">
+      <h1>Registro de eventos</h1>
+    </div>
+    <div class="container" style="text-align: center">
+  
+      <form [formGroup]="form" (submit)="insertar()">
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Id</mat-label>
+          <input matInput formControlName="IdEventos" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Titulo</mat-label>
+            <input matInput formControlName="Titulo" />
+          </mat-form-field>
+          <br />
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Actividad</mat-label>
+            <input matInput formControlName="Actividad" />
+          </mat-form-field>
+          <br />
+
+        <mat-form-field>
+          <mat-label>Fecha inicio</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="FechaInicio" />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field>
+            <mat-label>Fecha fin</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="FechaFin" />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Hora</mat-label>
+          <input matInput placeholder="1500" formControlName="Hora" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Confirmacion</mat-label>
+            <input matInput placeholder="1500" formControlName="Confirmacion" />
+          </mat-form-field>
+          <br />
+  
+        <mat-form-field>
+          <mat-label>Usuario</mat-label>
+          <mat-select formControlName="IdUsuario">
+            @for (ci of listaUsuario; track ci) {
+            <mat-option [value]="ci.idUsuario">{{ ci.nombreUsuario }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <div style="text-align: center">
+          <button mat-flat-button color="warn">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
