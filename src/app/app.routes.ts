@@ -12,6 +12,16 @@ import { seguridadGuard } from './guard/seguridad.guard';
 import { HomeComponent } from './components/home/home.component';
 import { MusicPlayerComponent } from './components/music-player/music-player.component';
 import { ImagenesgatosComponent } from './components/imagenesgatos/imagenesgatos.component';
+import { ForoComponent } from './components/foro/foro.component';
+import { ForoRegistrarComponent } from './components/foro/foro-registrar/foro-registrar.component';
+import { MensajeforoComponent } from './components/mensajeforo/mensajeforo.component';
+import { MensajeforoRegistrarComponent } from './components/mensajeforo/mensajeforo-registrar/mensajeforo-registrar.component';
+import { TecnicarelajacionRegistrarComponent } from './components/tecnicarelajacion/tecnicarelajacion-registrar/tecnicarelajacion-registrar.component';
+import { TecnicarelajacionComponent } from './components/tecnicarelajacion/tecnicarelajacion.component';
+import { RutinaComponent } from './components/rutina/rutina.component';
+import { RutinaRegistrarComponent } from './components/rutina/rutina-registrar/rutina-registrar.component';
+import { EjerciciorutinaComponent } from './components/ejerciciorutina/ejerciciorutina.component';
+import { EjerciciorutinaRegistrarComponent } from './components/ejerciciorutina/ejerciciorutina-registrar/ejerciciorutina-registrar.component';
 
 export const routes: Routes = [
     {

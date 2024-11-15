@@ -15,22 +15,21 @@
       <mat-icon>event</mat-icon>
       Eventos
     </button>
-    <button mat-button [matMenuTriggerFor]="menuurutina" style="color: white" *ngIf="isDeveloper()">
-      <mat-icon>fitness_center</mat-icon>
-      Usuario Rutina
+    <button mat-button [matMenuTriggerFor]="menuforos" style="color: white">
+      <mat-icon>speaker_notes</mat-icon>
+      Foros
     </button>
-    <button mat-button routerLink="/music" style="color: white" *ngIf="isDeveloper()">
-      <mat-icon>library_music</mat-icon>
-      musica
+    <button mat-button [matMenuTriggerFor]="menumensajesforos" style="color: white">
+      <mat-icon>subject</mat-icon>
+      Mensajes de Foros
     </button>
-    <button mat-button routerLink="/gatos" style="color: white" *ngIf="isDeveloper()">
-      <mat-icon>pets</mat-icon>
-      gatos
+    <button mat-button [matMenuTriggerFor]="menurutina" style="color: white">
+      <mat-icon>accessibility_new</mat-icon>
+      Rutinas
     </button>
-  </div>
-  <div class="right-menu">
-    <button mat-button [matMenuTriggerFor]="menuSalir" style="color: white" >
-      <mat-icon>person</mat-icon>Usuario
+    <button mat-button [matMenuTriggerFor]="menuejerciciorutina" style="color: white">
+      <mat-icon>folder_shared</mat-icon>
+      Ejercicios de Rutinas
     </button>
   </div>
 </mat-toolbar>
@@ -47,35 +46,20 @@
   <button mat-menu-item routerLink="/eventos">Listar</button>
   <button mat-menu-item routerLink="/eventos/nuevo">Registrar</button>
 </mat-menu>
-<mat-menu #menuurutina="matMenu">
-  <button mat-menu-item routerLink="/UsuarioRutina">Listar</button>
-  <button mat-menu-item routerLink="/UsuarioRutina/nuevo">Registrar</button>
+<mat-menu #menuforos="matMenu">
+  <button mat-menu-item routerLink="/foros">Listar</button>
+  <button mat-menu-item routerLink="/foros/nuevo">Registrar</button>
 </mat-menu>
-<mat-menu #menuSalir="matMenu">
-  <button mat-menu-item routerLink="/login" (click)="cerrar()">
-    <mat-icon>logout</mat-icon>
-    <span>Cerrar sesión</span>
-  </button>
-  <button mat-menu-item>
-    Rol:
-    <span>{{ role }}</span>
-  </button>
+<mat-menu #menumensajesforos="matMenu">
+  <button mat-menu-item routerLink="/mensajesforos">Listar</button>
+  <button mat-menu-item routerLink="/mensajesforos/nuevo">Registrar</button>
 </mat-menu>
-<div>
-  <footer>
-    <div class="footer-container">
-      <div class="footer-links">
-        <a href="#">Términos de Uso</a>
-        <a href="#">Política de Privacidad</a>
-        <a href="#">Contacto</a>
-      </div>
-      <div class="footer-social">
-        <a href="https://www.facebook.com/?locale=es_LA"><img src="assets/facebook.png" alt="facebook"></a>
-        <a href="https://twitter.com/login"><img src="assets/twitter.png" alt="Twitter"></a>
-        <a href="https://www.instagram.com/accounts/login/"><img src="assets/instagram.png" alt="Instagram"></a>
-      </div>
-    </div>
-    <p class="copyrights">2024 RELAX UP. Todos los derechos reservados.</p>
-  </footer>
-</div>
+<mat-menu #menurutina="matMenu">
+  <button mat-menu-item routerLink="/rutina">Listar</button>
+  <button mat-menu-item routerLink="/rutina/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuejerciciorutina="matMenu">
+  <button mat-menu-item routerLink="/ejerciciorutina">Listar</button>
+  <button mat-menu-item routerLink="/ejerciciorutina/nuevo">Registrar</button>
+</mat-menu>
 <router-outlet></router-outlet>

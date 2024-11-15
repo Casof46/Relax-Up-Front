@@ -11,6 +11,7 @@ const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
 })
+  
 export class UsuarioService {
   private url=`${base_url}/usuarios`;
   private listacambio=new Subject<Usuario[]>();
