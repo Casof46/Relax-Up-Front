@@ -22,6 +22,8 @@ import { RutinaComponent } from './components/rutina/rutina.component';
 import { RutinaRegistrarComponent } from './components/rutina/rutina-registrar/rutina-registrar.component';
 import { EjerciciorutinaComponent } from './components/ejerciciorutina/ejerciciorutina.component';
 import { EjerciciorutinaRegistrarComponent } from './components/ejerciciorutina/ejerciciorutina-registrar/ejerciciorutina-registrar.component';
+import { ForoListarComponent } from './components/foro/foro-listar/foro-listar.component';
+import { MensajeforoListarComponent } from './components/mensajeforo/mensajeforo-listar/mensajeforo-listar.component';
 
 export const routes: Routes = [
     {
@@ -76,5 +78,43 @@ export const routes: Routes = [
         path:'gatos',
         component: ImagenesgatosComponent,
         canActivate: [seguridadGuard],  
+    },
+    {
+        path: 'foross', component:ForoComponent,
+        children:[
+            {path: 'nuevo',component:ForoRegistrarComponent},
+            {path: 'ediciones/:id',component:ForoRegistrarComponent},
+
+        ],
+        canActivate: [seguridadGuard],
+    },
+    {
+        path: 'mensajeforos', component:MensajeforoComponent,
+        children:[
+            {path: 'nuevo',component:MensajeforoListarComponent},
+            {path: 'ediciones/:id',component:MensajeforoRegistrarComponent},
+
+        ],
+        canActivate: [seguridadGuard],
+    }
+    ,
+    {
+        path: 'rutina', component:RutinaComponent,
+        children:[
+            {path: 'nuevo',component:RutinaRegistrarComponent},
+            {path: 'ediciones/:id',component:RutinaRegistrarComponent},
+
+        ],
+        canActivate: [seguridadGuard],
+    }
+    ,
+    {
+        path: 'ejerciciorutinas', component:EjerciciorutinaComponent,
+        children:[
+            {path: 'nuevo',component:EjerciciorutinaRegistrarComponent},
+            {path: 'ediciones/:id',component:EjerciciorutinaComponent},
+
+        ],
+        canActivate: [seguridadGuard],
     }
 ];

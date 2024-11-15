@@ -26,7 +26,7 @@ export class ForoRegistrarComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   listaUsuario: Usuario[] = [];
   foros: Foros = new Foros();
-
+  edicion: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private usuarioservice: UsuarioService,
@@ -48,11 +48,19 @@ export class ForoRegistrarComponent implements OnInit{
       this.foros.idForos=this.form.value.IdForos;
       this.foros.titulo=this.form.value.Titulo;
       this.foros.usuario.idUsuario=this.form.value.IdUsuario
+      if (this.edicion) {
+        this.forosservice.update(this.foros).subscribe((data) => {
+          this.forosservice.list().subscribe((data) => {
+            this.forosservice.setList(data);
+          }); 
+        });
+      } else {
         this.forosservice.insert(this.foros).subscribe((data) => {
           this.forosservice.list().subscribe((data) => {
             this.forosservice.setList(data);
           });
         });
+      }
         this.router.navigate(['foross'])
       }
   }
