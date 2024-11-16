@@ -26,6 +26,8 @@ import { ForoListarComponent } from './components/foro/foro-listar/foro-listar.c
 import { MensajeforoListarComponent } from './components/mensajeforo/mensajeforo-listar/mensajeforo-listar.component';
 import { EmergenciaComponent } from './components/emergencia/emergencia.component';
 import { EmergenciaRegistrarComponent } from './components/emergencia/emergencia-registrar/emergencia-registrar.component';
+import { EmergenciaComponent } from './components/emergencia/emergencia.component';
+import { EmergenciaRegistrarComponent } from './components/emergencia/emergencia-registrar/emergencia-registrar.component';
 import { PlanesmembresiaComponent } from './components/planesmembresia/planesmembresia.component';
 import { PlanesmembresiaRegistrarComponent } from './components/planesmembresia/planesmembresia-registrar/planesmembresia-registrar.component';
 import { SuscripcionComponent } from './components/suscripcion/suscripcion.component';
@@ -121,6 +123,26 @@ export const routes: Routes = [
         children:[
             {path: 'nuevo',component:EjerciciorutinaRegistrarComponent},
             {path: 'ediciones/:id',component:EjerciciorutinaComponent},
+
+        ],
+        canActivate: [seguridadGuard],
+    }
+    ,
+    {
+        path: 'tecnicasrelajacion', component:TecnicarelajacionComponent,
+        children:[
+            {path: 'nuevo',component:TecnicarelajacionRegistrarComponent},
+            {path: 'ediciones/:id',component:TecnicarelajacionRegistrarComponent},
+
+        ],
+        canActivate: [seguridadGuard],
+    }
+    ,
+    {
+        path: 'emergencias', component:EmergenciaComponent,
+        children:[
+            {path: 'nuevo',component:EmergenciaRegistrarComponent},
+            {path: 'ediciones/:id',component:EmergenciaRegistrarComponent},
 
         ],
         canActivate: [seguridadGuard],
