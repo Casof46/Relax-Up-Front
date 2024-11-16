@@ -1,5 +1,5 @@
 <mat-toolbar class="custom-toolbar" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="verificar()">
-      <div fxLayout="row">
+      <div  fxLayout="row" fxLayoutGap="10px">
         <button mat-button [routerLink]="['/homes']" style="color: white">
           <mat-icon>home</mat-icon>Home
         </button>
@@ -31,6 +31,30 @@
       <mat-icon>folder_shared</mat-icon>
       Ejercicios de Rutinas
     </button>
+    <button mat-button [matMenuTriggerFor]="menuemergencia" style="color: white">
+      <mat-icon>folder_shared</mat-icon>
+      Emergencia
+    </button>
+    <button mat-button [matMenuTriggerFor]="menutecnicarelajacion" style="color: white">
+      <mat-icon>folder_shared</mat-icon>
+      Tecnicas de relajacion
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuPlanes" style="color: white">
+      <mat-icon>event</mat-icon>
+      Planes de Membresía
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuMetodo" style="color: white">
+      <mat-icon>account_balance_wallet</mat-icon>
+      Metodos de Pago
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuSus" style="color: white">
+      <mat-icon>euro_symbol</mat-icon>
+      Suscripciones
+    </button>
+    <button mat-button style="color: white" routerLink="/gatos">
+      <mat-icon>pet</mat-icon>
+      Gatos
+    </button>
   </div>
 </mat-toolbar>
 
@@ -61,5 +85,25 @@
 <mat-menu #menuejerciciorutina="matMenu">
   <button mat-menu-item routerLink="/ejerciciorutinas">Listar</button>
   <button mat-menu-item routerLink="/ejerciciorutinas/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuemergencia="matMenu">
+  <button mat-menu-item routerLink="/emergencias">Listar</button>
+  <button mat-menu-item routerLink="/emergencias/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menutecnicarelajacion="matMenu">
+  <button mat-menu-item routerLink="/tecnicasrelajacion">Listar</button>
+  <button mat-menu-item routerLink="/tecnicasrelajacion/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuPlanes="matMenu">
+  <button mat-menu-item routerLink="/planes"><mat-icon>assignment</mat-icon>Listar</button>
+  <button mat-menu-item routerLink="/planes/nuevo"><mat-icon>person_add</mat-icon>Registrar</button>
+</mat-menu>
+<mat-menu #menuMetodo="matMenu">
+  <button mat-menu-item routerLink="/metodos"><mat-icon>assignment</mat-icon>Listar</button>
+  <button mat-menu-item routerLink="/metodos/nuevo"><mat-icon>credit_card</mat-icon>Registrar</button>
+</mat-menu>
+<mat-menu #menuSus="matMenu">
+  <button mat-menu-item routerLink="/suscripciones"><mat-icon>assignment</mat-icon>Listar</button>
+  <button mat-menu-item routerLink="/suscripciones/nuevo"><mat-icon>person_add</mat-icon>Registrar</button>
 </mat-menu>
 <router-outlet></router-outlet>

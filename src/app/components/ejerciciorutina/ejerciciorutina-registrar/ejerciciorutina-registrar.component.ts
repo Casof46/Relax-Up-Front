@@ -56,7 +56,7 @@ export class EjerciciorutinaRegistrarComponent {
             this.ejerciciorutinaservice.setList(data);
           });
         });
-        this.router.navigate(['ejerciciorutina'])
+        this.router.navigate(['ejerciciorutinas'])
       }
   }
 }

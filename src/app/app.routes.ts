@@ -24,6 +24,14 @@ import { EjerciciorutinaComponent } from './components/ejerciciorutina/ejercicio
 import { EjerciciorutinaRegistrarComponent } from './components/ejerciciorutina/ejerciciorutina-registrar/ejerciciorutina-registrar.component';
 import { ForoListarComponent } from './components/foro/foro-listar/foro-listar.component';
 import { MensajeforoListarComponent } from './components/mensajeforo/mensajeforo-listar/mensajeforo-listar.component';
+import { EmergenciaComponent } from './components/emergencia/emergencia.component';
+import { EmergenciaRegistrarComponent } from './components/emergencia/emergencia-registrar/emergencia-registrar.component';
+import { PlanesmembresiaComponent } from './components/planesmembresia/planesmembresia.component';
+import { PlanesmembresiaRegistrarComponent } from './components/planesmembresia/planesmembresia-registrar/planesmembresia-registrar.component';
+import { SuscripcionComponent } from './components/suscripcion/suscripcion.component';
+import { SuscripcionRegistrarComponent } from './components/suscripcion/suscripcion-registrar/suscripcion-registrar.component';
+import { MetodopagoComponent } from './components/metodopago/metodopago.component';
+import { MetodopagoRegistrarComponent } from './components/metodopago/metodopago-registrar/metodopago-registrar.component';
 
 export const routes: Routes = [
     {
@@ -91,7 +99,7 @@ export const routes: Routes = [
     {
         path: 'mensajeforos', component:MensajeforoComponent,
         children:[
-            {path: 'nuevo',component:MensajeforoListarComponent},
+            {path: 'nuevo',component:MensajeforoRegistrarComponent},
             {path: 'ediciones/:id',component:MensajeforoRegistrarComponent},
 
         ],
@@ -114,6 +122,50 @@ export const routes: Routes = [
             {path: 'nuevo',component:EjerciciorutinaRegistrarComponent},
             {path: 'ediciones/:id',component:EjerciciorutinaComponent},
 
+        ],
+        canActivate: [seguridadGuard],
+    }
+    ,
+    {
+        path: 'tecnicasrelajacion', component:TecnicarelajacionComponent,
+        children:[
+            {path: 'nuevo',component:TecnicarelajacionRegistrarComponent},
+            {path: 'ediciones/:id',component:TecnicarelajacionRegistrarComponent},
+
+        ],
+        canActivate: [seguridadGuard],
+    }
+    ,
+    {
+        path: 'emergencias', component:EmergenciaComponent,
+        children:[
+            {path: 'nuevo',component:EmergenciaRegistrarComponent},
+            {path: 'ediciones/:id',component:EmergenciaRegistrarComponent},
+
+        ],
+        canActivate: [seguridadGuard],
+    },
+    {
+        path: 'planes', component:PlanesmembresiaComponent,
+        children:[
+            {path: 'nuevo',component:PlanesmembresiaRegistrarComponent},
+            {path:'ediciones/:id',component:PlanesmembresiaComponent}
+        ],
+        canActivate: [seguridadGuard],
+    },
+    {
+        path: 'suscripciones', component:SuscripcionComponent,
+        children:[
+            {path: 'nuevo',component:SuscripcionRegistrarComponent},
+            {path:'ediciones/:id',component:SuscripcionRegistrarComponent}
+        ],
+        canActivate: [seguridadGuard],
+    },
+    {
+        path: 'metodos', component:MetodopagoComponent,
+        children:[
+            {path: 'nuevo',component:MetodopagoRegistrarComponent},
+            {path:'ediciones/:id',component:MetodopagoRegistrarComponent}
         ],
         canActivate: [seguridadGuard],
     }
