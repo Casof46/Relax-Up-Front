@@ -22,18 +22,14 @@ import { RutinaComponent } from './components/rutina/rutina.component';
 import { RutinaRegistrarComponent } from './components/rutina/rutina-registrar/rutina-registrar.component';
 import { EjerciciorutinaComponent } from './components/ejerciciorutina/ejerciciorutina.component';
 import { EjerciciorutinaRegistrarComponent } from './components/ejerciciorutina/ejerciciorutina-registrar/ejerciciorutina-registrar.component';
-import { ForoListarComponent } from './components/foro/foro-listar/foro-listar.component';
-import { MensajeforoListarComponent } from './components/mensajeforo/mensajeforo-listar/mensajeforo-listar.component';
-import { EmergenciaComponent } from './components/emergencia/emergencia.component';
-import { EmergenciaRegistrarComponent } from './components/emergencia/emergencia-registrar/emergencia-registrar.component';
-import { EmergenciaComponent } from './components/emergencia/emergencia.component';
-import { EmergenciaRegistrarComponent } from './components/emergencia/emergencia-registrar/emergencia-registrar.component';
 import { PlanesmembresiaComponent } from './components/planesmembresia/planesmembresia.component';
 import { PlanesmembresiaRegistrarComponent } from './components/planesmembresia/planesmembresia-registrar/planesmembresia-registrar.component';
 import { SuscripcionComponent } from './components/suscripcion/suscripcion.component';
 import { SuscripcionRegistrarComponent } from './components/suscripcion/suscripcion-registrar/suscripcion-registrar.component';
 import { MetodopagoComponent } from './components/metodopago/metodopago.component';
 import { MetodopagoRegistrarComponent } from './components/metodopago/metodopago-registrar/metodopago-registrar.component';
+import { EmergenciaComponent } from './components/emergencia/emergencia.component';
+import { EmergenciaRegistrarComponent } from './components/emergencia/emergencia-registrar/emergencia-registrar.component';
 
 export const routes: Routes = [
     {
