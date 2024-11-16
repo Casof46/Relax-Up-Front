@@ -31,6 +31,14 @@
       <mat-icon>folder_shared</mat-icon>
       Ejercicios de Rutinas
     </button>
+    <button mat-button [matMenuTriggerFor]="menuemergencia" style="color: white">
+      <mat-icon>folder_shared</mat-icon>
+      Emergencia
+    </button>
+    <button mat-button [matMenuTriggerFor]="menutecnicarelajacion" style="color: white">
+      <mat-icon>folder_shared</mat-icon>
+      Tecnicas de relajacion
+    </button>
   </div>
 </mat-toolbar>
 
@@ -61,5 +69,13 @@
 <mat-menu #menuejerciciorutina="matMenu">
   <button mat-menu-item routerLink="/ejerciciorutinas">Listar</button>
   <button mat-menu-item routerLink="/ejerciciorutinas/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuemergencia="matMenu">
+  <button mat-menu-item routerLink="/emergencias">Listar</button>
+  <button mat-menu-item routerLink="/emergencias/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menutecnicarelajacion="matMenu">
+  <button mat-menu-item routerLink="/tecnicasrelajacion">Listar</button>
+  <button mat-menu-item routerLink="/tecnicasrelajacion/nuevo">Registrar</button>
 </mat-menu>
 <router-outlet></router-outlet>
