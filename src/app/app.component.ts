@@ -5,6 +5,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { LoginService } from './services/login.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -14,11 +16,29 @@ import { RouterLink } from '@angular/router';
     RouterLink,
     MatMenuModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    CommonModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'RelaxupFront';
+  role: string = '';
+  constructor(private loginService: LoginService) {}
+  cerrar() {
+    sessionStorage.clear();
+  }
+
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  isDeveloper() {
+    return this.role === 'DEVELOPER';
+  }
+
+  isTester() {
+    return this.role === 'TESTER';
+  }
 }

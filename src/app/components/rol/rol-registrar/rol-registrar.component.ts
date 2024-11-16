@@ -9,8 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Rol } from '../../../models/Rol';
 import { RolserviceService } from '../../../services/rolservice.service';
 import { Router } from '@angular/router';
-
-
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-rol-registrar',
@@ -22,7 +21,8 @@ import { Router } from '@angular/router';
     FormsModule,
     MatSelectModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
+    MatSnackBarModule
   ],
   templateUrl: './rol-registrar.component.html',
   styleUrl: './rol-registrar.component.css'
@@ -36,7 +36,8 @@ export class RolRegistrarComponent implements OnInit{
     private rolservice: RolserviceService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -47,7 +48,7 @@ export class RolRegistrarComponent implements OnInit{
 
     this.form = this.formBuilder.group({
       IdRol: [''],
-      NombreRol: ['', Validators.required],
+      NombreRol: ['',[Validators.required, Validators.minLength(8)]],
     });
   }
   insertar(): void {
@@ -55,24 +56,29 @@ export class RolRegistrarComponent implements OnInit{
       this.rol.idRol = this.form.value.IdRol;
       this.rol.nombreRol = this.form.value.NombreRol;
       if (this.edicion) {
-        //update
         this.rolservice.update(this.rol).subscribe((data) => {
           this.rolservice.list().subscribe((data) => {
             this.rolservice.setList(data);
           }); 
         });
       } else {
-        //insert
         this.rolservice.insert(this.rol).subscribe((data) => {
           this.rolservice.list().subscribe((data) => {
             this.rolservice.setList(data);
           });
         });
       }
-      /**/
+      this.router.navigate(['rol']);
+      this.snackBar.open('Se registro de manera exitosa', 'Cerrar', {
+        duration: 3000,
+      });
+    } else {
+      this.snackBar.open('Por favor, ingresa al menos 8 caracteres en nombre del rol.', 'Cerrar', {
+        duration: 5000,
+      });
     }
-    this.router.navigate(['rol']);
   }
+  
   init() {
     if (this.edicion) {
       this.rolservice.listId(this.id).subscribe((data) => {

@@ -1,15 +1,18 @@
-<mat-toolbar class="custom-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+<mat-toolbar class="custom-toolbar" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="verificar()">
       <div fxLayout="row">
-    <button mat-button [matMenuTriggerFor]="menuUsuario" style="color: white">
+        <button mat-button [routerLink]="['/homes']" style="color: white">
+          <mat-icon>home</mat-icon>Home
+        </button>
+    <button mat-button [matMenuTriggerFor]="menuUsuario" style="color: white"  *ngIf="isDeveloper()">
       <mat-icon>group</mat-icon>
       Usuario
     </button>
-    <button mat-button [matMenuTriggerFor]="menuRol" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuRol" style="color: white" *ngIf="isDeveloper()">
       <mat-icon>security</mat-icon>
       Rol
     </button>
-    <button mat-button [matMenuTriggerFor]="menueventos" style="color: white">
-      <mat-icon>list</mat-icon>
+    <button mat-button [matMenuTriggerFor]="menueventos" style="color: white" *ngIf="isDeveloper()">
+      <mat-icon>event</mat-icon>
       Eventos
     </button>
     <button mat-button [matMenuTriggerFor]="menuforos" style="color: white">
@@ -28,16 +31,9 @@
       <mat-icon>folder_shared</mat-icon>
       Ejercicios de Rutinas
     </button>
-    <button mat-button [matMenuTriggerFor]="menutecnicasrelajacion" style="color: white">
-      <mat-icon>sentiment_very_satisfied</mat-icon>
-      Tecnicas de relajacion
-    </button>
-    <button mat-button [matMenuTriggerFor]="menuEmergencia" style="color: white">
-      <mat-icon>alarm_on</mat-icon>
-      Emergencias
-    </button>
   </div>
 </mat-toolbar>
+
 <mat-menu #menuUsuario="matMenu">
   <button mat-menu-item routerLink="/usuarios">Listar</button>
   <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
@@ -55,23 +51,15 @@
   <button mat-menu-item routerLink="/foross/nuevo">Registrar</button>
 </mat-menu>
 <mat-menu #menumensajesforos="matMenu">
-  <button mat-menu-item routerLink="/mensajesforos">Listar</button>
-  <button mat-menu-item routerLink="/mensajesforos/nuevo">Registrar</button>
+  <button mat-menu-item routerLink="/mensajeforos">Listar</button>
+  <button mat-menu-item routerLink="/mensajeforos/nuevo">Registrar</button>
 </mat-menu>
 <mat-menu #menurutina="matMenu">
   <button mat-menu-item routerLink="/rutina">Listar</button>
   <button mat-menu-item routerLink="/rutina/nuevo">Registrar</button>
 </mat-menu>
 <mat-menu #menuejerciciorutina="matMenu">
-  <button mat-menu-item routerLink="/ejerciciorutina">Listar</button>
-  <button mat-menu-item routerLink="/ejerciciorutina/nuevo">Registrar</button>
-</mat-menu>
-<mat-menu #menutecnicasrelajacion="matMenu">
-  <button mat-menu-item routerLink="/tecnicasrelajacion">Listar</button>
-  <button mat-menu-item routerLink="/tecnicasrelajacion/nuevo">Registrar</button>
-</mat-menu>
-<mat-menu #menuEmergencia="matMenu">
-  <button mat-menu-item routerLink="/emergencias"><mat-icon>assignment</mat-icon>Listar</button>
-  <button mat-menu-item routerLink="/emergencias/nuevo"><mat-icon>person_add</mat-icon>Registrar</button>
+  <button mat-menu-item routerLink="/ejerciciorutinas">Listar</button>
+  <button mat-menu-item routerLink="/ejerciciorutinas/nuevo">Registrar</button>
 </mat-menu>
 <router-outlet></router-outlet>
