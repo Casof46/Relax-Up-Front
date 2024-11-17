@@ -40,7 +40,7 @@ export class EventosRegistrarComponent implements OnInit{
   ) {}
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      IdEventos: ['', Validators.required],
+      IdEventos: [''],
       Titulo: ['', Validators.required],
       Actividad: ['', Validators.required],
       FechaInicio: ['', Validators.required],

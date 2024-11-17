@@ -10,7 +10,6 @@ import { UsuariorutinaRegistrarComponent } from './components/usuariorutina/usua
 import { LoginComponent } from './components/login/login.component';
 import { seguridadGuard } from './guard/seguridad.guard';
 import { HomeComponent } from './components/home/home.component';
-import { MusicPlayerComponent } from './components/music-player/music-player.component';
 import { ImagenesgatosComponent } from './components/imagenesgatos/imagenesgatos.component';
 import { ForoComponent } from './components/foro/foro.component';
 import { ForoRegistrarComponent } from './components/foro/foro-registrar/foro-registrar.component';
@@ -30,6 +29,7 @@ import { MetodopagoComponent } from './components/metodopago/metodopago.componen
 import { MetodopagoRegistrarComponent } from './components/metodopago/metodopago-registrar/metodopago-registrar.component';
 import { EmergenciaComponent } from './components/emergencia/emergencia.component';
 import { EmergenciaRegistrarComponent } from './components/emergencia/emergencia-registrar/emergencia-registrar.component';
+import { ReporteConfirmaronComponent } from './components/reporte/reporte-confirmaron/reporte-confirmaron.component';
 
 export const routes: Routes = [
     {
@@ -74,11 +74,6 @@ export const routes: Routes = [
       path: 'homes',
       component: HomeComponent,
       canActivate: [seguridadGuard],  
-    },
-    {
-        path:'music',
-        component: MusicPlayerComponent,
-        canActivate: [seguridadGuard],  
     },
     {
         path:'gatos',
@@ -186,5 +181,9 @@ export const routes: Routes = [
             {path:'ediciones/:id',component:MetodopagoRegistrarComponent}
         ],
         canActivate: [seguridadGuard],
+    },
+    {
+    path: 'reporte-confirmaron', component:ReporteConfirmaronComponent,
+    canActivate: [seguridadGuard],
     }
 ];

@@ -1,55 +1,49 @@
 <div class="title-container">
-  <div class="container" style="text-align: center; margin: 2%">
-    <h1>Registro de Usuarios</h1>
-  </div>
+  <div class="container" style="text-align: center;margin:5%"><h1>Registro de usuarios</h1></div>
   <div class="container" style="text-align: center">
-    <form [formGroup]="form" (submit)="insertar()">
-      <mat-form-field class="example-full-width" >
-        <mat-label>Id</mat-label>
-        <input matInput formControlName="IdUsuario" />
-      </mat-form-field>
-      <br />
+    <form [formGroup]="form" (submit)="insertar()" >
 
       <mat-form-field class="example-full-width">
         <mat-label>Nombre</mat-label>
-        <input matInput placeholder="nombre" formControlName="NombreUsuario" />
+        <input matInput placeholder="Ejem. Paciente" formControlName="unombre" />
       </mat-form-field>
-
       <br />
+
       <mat-form-field class="example-full-width">
-        <mat-label>Correo</mat-label>
-        <input matInput placeholder="correo" formControlName="CorreoUsuario" />
-      </mat-form-field>
+          <mat-label>Correo</mat-label>
+          <input matInput placeholder="Ejem. Paciente" formControlName="ucorreo" />
+        </mat-form-field>
+        <br />
 
-      <br />
-      <mat-form-field class="example-full-width">
-        <mat-label>Telefono</mat-label>
-        <input matInput placeholder="telefono" formControlName="TelefonoUsuario" />
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Telefono</mat-label>
+          <input matInput placeholder="Ejem. Paciente" formControlName="utelefono" />
+        </mat-form-field>
+        <br />
 
-      <br />
-      <mat-form-field class="example-full-width" >
-        <mat-label>Contraseña</mat-label>
-        <input matInput placeholder="contraseña" formControlName="ContrasenaUsuario" />
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Contraseña</mat-label>
+          <input matInput placeholder="Ejem. Paciente" formControlName="ucontrasena" />
+        </mat-form-field>
+        <br />
 
-      <br />
-      <mat-form-field class="example-full-width">
-        <mat-label>Progreso</mat-label>
-        <input matInput placeholder="Progreso" formControlName="ProgresoUsuario" />
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Progreso</mat-label>
+          <input matInput placeholder="Ejem. Paciente" formControlName="uprogreso" />
+        </mat-form-field>
+        <br />
 
-      <br />
-      <mat-form-field>
-        <mat-label>Rol</mat-label>
-        <mat-select formControlName="IdRol">
-          @for (ci of listarol; track ci) {
-          <mat-option [value]="ci.idRol">{{ ci.nombreRol }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-      <div style="text-align: center">
-        <button mat-flat-button color="warn">Registrar</button>
+        <mat-form-field>
+          <mat-label>Rol</mat-label>
+          <mat-select formControlName="urol">
+            @for (rol of listaRoles; track rol) {
+            <mat-option [value]="rol.idRol">{{ rol.nombreRol }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      
+      <div style="text-align: center;">
+        <button mat-flat-button  color="warn">Registrar</button>
       </div>
     </form>
   </div>
