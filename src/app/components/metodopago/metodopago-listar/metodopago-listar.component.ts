@@ -27,9 +27,13 @@ export class MetodopagoListarComponent implements OnInit{
   ngOnInit(): void {
     this.mp.list().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);
+      this.datasource.paginator = this.paginator
+
     });
     this.mp.getList().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);
+      this.datasource.paginator = this.paginator
+
     });
   }
 

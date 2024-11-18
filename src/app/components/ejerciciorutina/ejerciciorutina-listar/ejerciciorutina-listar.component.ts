@@ -23,9 +23,13 @@ export class EjerciciorutinaListarComponent implements OnInit{
   ngOnInit(): void {
   this.ejerciciorutina.list().subscribe(data=>{
     this.datasource = new MatTableDataSource(data)
+    this.datasource.paginator = this.paginator
+
   });
   this.ejerciciorutina.getList().subscribe(data=>{
     this.datasource = new MatTableDataSource(data);
+    this.datasource.paginator = this.paginator
+
   })
   }
   ngAfterViewInit(): void {

@@ -23,9 +23,13 @@ export class RutinaListarComponent implements OnInit{
   ngOnInit(): void {
   this.Rutina.list().subscribe(data=>{
     this.datasource = new MatTableDataSource(data)
+    this.datasource.paginator = this.paginator
+
   });
   this.Rutina.getList().subscribe(data=>{
     this.datasource = new MatTableDataSource(data);
+    this.datasource.paginator = this.paginator
+
   })
   }
   ngAfterViewInit(): void {

@@ -32,9 +32,13 @@ export class SuscripcionListarComponent implements OnInit{
   ngOnInit(): void {
     this.suS.list().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);
+      this.datasource.paginator = this.paginator
+
     });
     this.suS.getList().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);
+      this.datasource.paginator = this.paginator
+
     });
   }
 
