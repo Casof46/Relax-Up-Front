@@ -35,8 +35,9 @@ import { ReporteTotalMensajesComponent } from './components/reporte/reporte-tota
 import { ReporteConfirmaronComponent } from './components/reporte/reporte-confirmaron/reporte-confirmaron.component';
 import { UsuarioRegistrarComponent } from './components/usuario/usuario-registrar/usuario-registrar.component';
 import { ReporteProgresoComponent } from './components/reporte/reporte-progreso/reporte-progreso.component';
-import { ReporteComponent } from './components/reporte/reporte.component';
 import { ReporteemergenciaComponent } from './components/reporte/reporteemergencia/reporteemergencia.component';
+import { ReporteTotalIngresosComponent } from './components/reporte/reporte-total-ingresos/reporte-total-ingresos.component';
+import { ReporterutinaComponent } from './components/reporte/reporterutina/reporterutina.component';
 
 export const routes: Routes = [
     {
@@ -195,28 +196,14 @@ export const routes: Routes = [
     {
         path: 'reportes', component:ReporteComponent,
         children:[
-            {path: 'suscripciones',component:ReporteTotalSuscripcionesComponent},
+            {path: 'reporte-confirmaron', component:ReporteConfirmaronComponent},
+            {path: 'reporte-progreso', component:ReporteProgresoComponent},
             {path: 'Forosporusuario',component:ReporteTotalForosComponent},
-            {path: 'Mensajeporforo',component:ReporteTotalMensajesComponent}
+            {path: 'totalingresos',component:ReporteTotalIngresosComponent},
+            {path: 'Mensajeporforo',component:ReporteTotalMensajesComponent},
+            {path: 'suscripciones',component:ReporteTotalSuscripcionesComponent},
+            {path: 'emergencias',component: ReporteemergenciaComponent},
         ],
         canActivate: [seguridadGuard],
-    },
-    {
-    path: 'reporte-confirmaron', component:ReporteConfirmaronComponent,
-    canActivate: [seguridadGuard],
-    },
-    {
-        path: 'reporte-progreso', component:ReporteProgresoComponent,
-        canActivate: [seguridadGuard],
-        },
-    {
-        path: 'reportes',
-        component: ReporteComponent,
-        children: [
-          {
-            path: 'emergencias',
-            component: ReporteemergenciaComponent,
-          },
-        ],
-      },
+    }
 ];

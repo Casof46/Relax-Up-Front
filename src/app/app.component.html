@@ -3,65 +3,68 @@
         <button class="special-buttons" mat-button [routerLink]="['/homes']" style="color: white">
           <mat-icon>home</mat-icon>Home
         </button>
-    <button class="special-buttons" mat-button [matMenuTriggerFor]="menuUsuario" style="color: white"  *ngIf="isDeveloper()">
+    <button class="special-buttons" mat-button [matMenuTriggerFor]="menuUsuario" style="color: white"  *ngIf="isAdmin() || isTester()">
       <mat-icon>group</mat-icon>
       Usuario
     </button>
-    <button class="special-buttons" mat-button [matMenuTriggerFor]="menuRol" style="color: white" *ngIf="isDeveloper()">
+    <button class="special-buttons" mat-button [matMenuTriggerFor]="menuRol" style="color: white" *ngIf="isAdmin()">
       <mat-icon>security</mat-icon>
       Rol
     </button>
-    <button class="special-buttons" mat-button [matMenuTriggerFor]="menueventos" style="color: white" *ngIf="isDeveloper()">
+    <button class="special-buttons" mat-button [matMenuTriggerFor]="menueventos" style="color: white" *ngIf="isAdmin() || isTester()">
       <mat-icon>event</mat-icon>
       Eventos
     </button>
-    <button class="special-buttons" mat-button [matMenuTriggerFor]="menuforos" style="color: white">
+    <button class="special-buttons" mat-button [matMenuTriggerFor]="menuforos" style="color: white" *ngIf="isAdmin() || isTester()">
       <mat-icon>speaker_notes</mat-icon>
       Foros
     </button>
-    <button class="special-buttons" mat-button [matMenuTriggerFor]="menumensajesforos" style="color: white">
+    <button class="special-buttons" mat-button [matMenuTriggerFor]="menumensajesforos" style="color: white" *ngIf="isAdmin()  || isTester()">
       <mat-icon>subject</mat-icon>
       Mensajes de Foros
     </button>
-    <button class="special-buttons" mat-button [matMenuTriggerFor]="menurutina" style="color: white">
+    <button class="special-buttons" mat-button [matMenuTriggerFor]="menurutina" style="color: white" *ngIf="isAdmin() || isTester()">
       <mat-icon>accessibility_new</mat-icon>
       Rutinas
     </button>
-    <button class="special-buttons" mat-button [matMenuTriggerFor]="menuurutina" style="color: white"  *ngIf="isDeveloper()">
+    <button class="special-buttons" mat-button [matMenuTriggerFor]="menuurutina" style="color: white"  *ngIf="isAdmin()  || isTester()">
       <mat-icon>group</mat-icon>
       Usuario Rutina
     </button>
-    <button class="special-buttons" mat-button [matMenuTriggerFor]="menuejerciciorutina" style="color: white">
+    <button class="special-buttons" mat-button [matMenuTriggerFor]="menuejerciciorutina" style="color: white"*ngIf="isAdmin()  || isTester()"> 
       <mat-icon>folder_shared</mat-icon>
       Ejercicios de Rutinas
     </button>
-    <button class="special-buttons" mat-button [matMenuTriggerFor]="menuemergencia" style="color: white">
+    <button class="special-buttons" mat-button [matMenuTriggerFor]="menuemergencia" style="color: white" *ngIf="isAdmin()">
       <mat-icon>folder_shared</mat-icon>
       Emergencia
     </button>
-    <button class="special-buttons" mat-button [matMenuTriggerFor]="menutecnicarelajacion" style="color: white">
+    <button class="special-buttons" mat-button [matMenuTriggerFor]="menutecnicarelajacion" style="color: white" *ngIf="isAdmin()  || isTester()">
       <mat-icon>folder_shared</mat-icon>
       Tecnicas de relajacion
     </button>
   </div>
 </mat-toolbar>
-<mat-toolbar>    
-  <button class="special-buttons" mat-button [matMenuTriggerFor]="menuPlanes" style="color: white">
+<mat-toolbar *ngIf="verificar()">    
+  <button class="special-buttons" mat-button [matMenuTriggerFor]="menuPlanes" style="color: white" *ngIf="isAdmin()">
   <mat-icon>event</mat-icon>
   Planes de Membresía
 </button>
-<button class="special-buttons" mat-button [matMenuTriggerFor]="menuMetodo" style="color: white">
+<button class="special-buttons" mat-button [matMenuTriggerFor]="menuMetodo" style="color: white" *ngIf="isAdmin()">
   <mat-icon>account_balance_wallet</mat-icon>
   Metodos de Pago
 </button>
-<button class="special-buttons" mat-button [matMenuTriggerFor]="menuSus" style="color: white">
+<button class="special-buttons" mat-button [matMenuTriggerFor]="menuSus" style="color: white" *ngIf="isAdmin()">
   <mat-icon>euro_symbol</mat-icon>
   Suscripciones
 </button>
-<button class="special-buttons" mat-button style="color: white" routerLink="/gatos">
+<button class="special-buttons" mat-button style="color: white" routerLink="/gatos" *ngIf="isAdmin() || isTester()">
   <mat-icon>pets</mat-icon>
   Gatos
 </button>
+<button mat-button [matMenuTriggerFor]="menuReportes" style="color: white" *ngIf="isAdmin()">
+  <mat-icon>book</mat-icon>Reportes
+    </button>
 <button mat-button [matMenuTriggerFor]="menuSalir" style="color: white">
   <mat-icon>person</mat-icon>Usuario
 </button>
@@ -77,7 +80,6 @@
 <mat-menu #menueventos="matMenu">
   <button mat-menu-item routerLink="/eventos"><mat-icon>assignment</mat-icon>Listar</button>
   <button mat-menu-item routerLink="/eventos/nuevo"><mat-icon>event_available</mat-icon>Registrar</button>
-  <button mat-menu-item routerLink="/reporte-confirmaron"><mat-icon>event_note</mat-icon>reporte-confirmaron</button>
 </mat-menu>
 <mat-menu #menuforos="matMenu">
   <button mat-menu-item routerLink="/foross">Listar</button>
@@ -94,7 +96,6 @@
 <mat-menu #menuurutina="matMenu">
   <button mat-menu-item routerLink="/UsuarioRutina">Listar</button>
   <button mat-menu-item routerLink="/UsuarioRutina/nuevo">Registrar</button>
-  <button mat-menu-item routerLink="/reporte-progreso"><mat-icon>event_note</mat-icon>reporte del progreso</button>
 </mat-menu>
 <mat-menu #menuejerciciorutina="matMenu">
   <button mat-menu-item routerLink="/ejerciciorutinas">Listar</button>
@@ -119,6 +120,14 @@
 <mat-menu #menuSus="matMenu">
   <button mat-menu-item routerLink="/suscripciones"><mat-icon>assignment</mat-icon>Listar</button>
   <button mat-menu-item routerLink="/suscripciones/nuevo"><mat-icon>person_add</mat-icon>Registrar</button>
+</mat-menu>
+<mat-menu #menuReportes="matMenu">
+  <button mat-menu-item routerLink="/reportes"><mat-icon> pie_chart</mat-icon>Rutinas</button>
+  <button mat-menu-item routerLink="/reportes/totalingresos"><mat-icon> pie_chart</mat-icon>total ingresos</button>
+  <button mat-menu-item routerLink="/reportes/emergencias"><mat-icon> bar_chart</mat-icon>Emergencias</button>
+  <button mat-menu-item routerLink="/reportes/reporte-confirmaron"><mat-icon>event_note</mat-icon>reporte-confirmaron</button>
+  <button mat-menu-item routerLink="/reportes/reporte-progreso"><mat-icon>event_note</mat-icon>reporte del progreso</button>
+  <button mat-menu-item routerLink="/reportes/suscripciones"><mat-icon> bar_chart</mat-icon>Sumas</button>
 </mat-menu>
 <mat-menu #menuSalir="matMenu">
   <button mat-menu-item routerLink="/login" (click)="cerrar()">
