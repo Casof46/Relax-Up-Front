@@ -14,26 +14,31 @@ import { UsuarioService } from '../../../services/usuario.service';
 import { ForosService } from '../../../services/foros.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-mensajeforo-registrar',
   standalone: true,
   providers: [provideNativeDateAdapter()],
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
     MatDatepickerModule,
-    NgIf],
+    NgIf,
+  ],
   templateUrl: './mensajeforo-registrar.component.html',
-  styleUrl: './mensajeforo-registrar.component.css'
+  styleUrls: ['./mensajeforo-registrar.component.css'],
 })
-export class MensajeforoRegistrarComponent implements OnInit{
+export class MensajeforoRegistrarComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   listaForos: Foros[] = [];
   listaUsuario: Usuario[] = [];
   mensajesforos: MensajesForos = new MensajesForos();
+  edicion: boolean = false;
+  id: number = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,35 +46,88 @@ export class MensajeforoRegistrarComponent implements OnInit{
     private usuarioservice: UsuarioService,
     private mensajeforoservice: MensajeforoService,
     private router: Router,
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute
   ) {}
+
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      idMensajesFoross:[''],
-      contenido:['',Validators.required],
-      FechaPublicacion:['',Validators.required],
-      mensajesforosforos:['',Validators.required],
-      mensajesforosusuarios:['',Validators.required],
+    this.route.params.subscribe((params: Params) => {
+      this.id = params['id'];
+      this.edicion = this.id > 0;
+      this.init();
     });
+
+    this.form = this.formBuilder.group({
+      idMensajesFoross: [''],
+      contenido: ['', [Validators.required, Validators.minLength(3)]],
+      FechaPublicacion: ['', Validators.required],
+      mensajesforosforos: ['', Validators.required],
+      mensajesforosusuarios: ['', Validators.required],
+    });
+
     this.forosservice.list().subscribe((data) => {
       this.listaForos = data;
     });
+
     this.usuarioservice.list().subscribe((data) => {
       this.listaUsuario = data;
     });
   }
+
   insertar(): void {
-    if(this.form.valid){
-      this.mensajesforos.idMensajesForos=this.form.value.idMensajesFoross;
-      this.mensajesforos.contenido=this.form.value.contenido
-      this.mensajesforos.fechaPublicacion=this.form.value.FechaPublicacion
-      this.mensajesforos.foros.idForos=this.form.value.mensajesforosforos
-      this.mensajesforos.usuario.idUsuario=this.form.value.mensajesforosusuarios
-        this.mensajeforoservice.insert(this.mensajesforos).subscribe((data) => {
-          this.mensajeforoservice.list().subscribe((data) => {
-            this.mensajeforoservice.setList(data);
-          });
-        });
-        this.router.navigate(['mensajeforos'])
+    if (this.form.valid) {
+      this.mensajesforos.idMensajesForos = this.form.value.idMensajesFoross;
+      this.mensajesforos.contenido = this.form.value.contenido;
+      this.mensajesforos.fechaPublicacion = this.form.value.FechaPublicacion;
+      this.mensajesforos.foros.idForos = this.form.value.mensajesforosforos;
+      this.mensajesforos.usuario.idUsuario = this.form.value.mensajesforosusuarios;
+
+      if (this.edicion) {
+        this.mensajeforoservice.update(this.mensajesforos).subscribe(
+          () => {
+            this.showSnackBar('Mensaje actualizado con éxito');
+            this.router.navigate(['mensajeforos']);
+          },
+          (error) => this.handleError(error, 'Error al actualizar el mensaje')
+        );
+      } else {
+        this.mensajeforoservice.insert(this.mensajesforos).subscribe(
+          () => {
+            this.showSnackBar('Mensaje registrado con éxito');
+            this.router.navigate(['mensajeforos']);
+          },
+          (error) => this.handleError(error, 'Error al registrar el mensaje')
+        );
       }
+    } else {
+      this.showSnackBar('Por favor, complete los campos requeridos');
+    }
+  }
+
+  init() {
+    if (this.edicion) {
+      this.mensajeforoservice.listId(this.id).subscribe((data) => {
+        this.form.patchValue({
+          idMensajesFoross: data.idMensajesForos,
+          contenido: data.contenido,
+          FechaPublicacion: data.fechaPublicacion,
+          mensajesforosforos: data.foros.idForos,
+          mensajesforosusuarios: data.usuario.idUsuario,
+        });
+      });
+    }
+  }
+
+  private showSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
+
+  private handleError(error: any, userMessage: string) {
+    console.error(userMessage, error);
+    this.showSnackBar(userMessage);
   }
 }

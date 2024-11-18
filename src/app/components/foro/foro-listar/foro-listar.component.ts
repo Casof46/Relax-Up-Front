@@ -48,7 +48,7 @@ export class ForoListarComponent {
         });
       },
       (error) => {
-        console.error('Error al eliminar el foro:', error);  // Agregar log para inspeccionar el error
+        console.error('Error al eliminar el foro:', error);
         this.snackBar.open('Hubo un error al eliminar el foro', 'Cerrar', {
           duration: 3000,
           horizontalPosition: 'right',

@@ -28,6 +28,10 @@ import { MetodopagoComponent } from './components/metodopago/metodopago.componen
 import { MetodopagoRegistrarComponent } from './components/metodopago/metodopago-registrar/metodopago-registrar.component';
 import { EmergenciaComponent } from './components/emergencia/emergencia.component';
 import { EmergenciaRegistrarComponent } from './components/emergencia/emergencia-registrar/emergencia-registrar.component';
+import { ReporteComponent } from './components/reporte/reporte.component';
+import { ReporteTotalSuscripcionesComponent } from './components/reporte/reporte-total-suscripciones/reporte-total-suscripciones.component';
+import { ReporteTotalForosComponent } from './components/reporte/reporte-total-foros/reporte-total-foros.component';
+import { ReporteTotalMensajesComponent } from './components/reporte/reporte-total-mensajes/reporte-total-mensajes.component';
 import { ReporteConfirmaronComponent } from './components/reporte/reporte-confirmaron/reporte-confirmaron.component';
 import { UsuarioRegistrarComponent } from './components/usuario/usuario-registrar/usuario-registrar.component';
 import { ReporteProgresoComponent } from './components/reporte/reporte-progreso/reporte-progreso.component';
@@ -117,7 +121,7 @@ export const routes: Routes = [
         path: 'ejerciciorutinas', component:EjerciciorutinaComponent,
         children:[
             {path: 'nuevo',component:EjerciciorutinaRegistrarComponent},
-            {path: 'ediciones/:id',component:EjerciciorutinaComponent},
+            {path: 'ediciones/:id',component:EjerciciorutinaRegistrarComponent},
 
         ],
         canActivate: [seguridadGuard],
@@ -183,6 +187,15 @@ export const routes: Routes = [
         children:[
             {path: 'nuevo',component:MetodopagoRegistrarComponent},
             {path:'ediciones/:id',component:MetodopagoRegistrarComponent}
+        ],
+        canActivate: [seguridadGuard],
+    },
+    {
+        path: 'reportes', component:ReporteComponent,
+        children:[
+            {path: 'suscripciones',component:ReporteTotalSuscripcionesComponent},
+            {path: 'Forosporusuario',component:ReporteTotalForosComponent},
+            {path: 'Mensajeporforo',component:ReporteTotalMensajesComponent}
         ],
         canActivate: [seguridadGuard],
     },
