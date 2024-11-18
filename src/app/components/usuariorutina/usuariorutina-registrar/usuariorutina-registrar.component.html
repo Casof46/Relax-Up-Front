@@ -5,16 +5,10 @@
     <div class="container" style="text-align: center">
   
       <form [formGroup]="form" (submit)="insertar()">
-  
-        <mat-form-field class="example-full-width">
-          <mat-label>Id</mat-label>
-          <input matInput formControlName="IdUsuarioRutina" />
-        </mat-form-field>
-        <br />
 
         <mat-form-field>
           <mat-label>Fecha</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="FechaRealizacion" />
+          <input matInput [matDatepicker]="picker" formControlName="FechaRealizacion" min="2024-11-18" />
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle
             matIconSuffix
@@ -26,7 +20,19 @@
   
         <mat-form-field class="example-full-width">
           <mat-label>Progreso</mat-label>
-          <input matInput placeholder="1500" formControlName="Progreso" />
+          <input matInput placeholder="" formControlName="Progreso" />
+          <mat-error *ngIf="form.get('Progreso')?.hasError('required')">
+            Campo obligatorio
+        </mat-error>
+        <mat-error *ngIf="form.get('Progreso')?.hasError('min')">
+          Ingrese numero valido
+        </mat-error>
+        <mat-error *ngIf="form.get('Progreso')?.hasError('max')">
+          Ingrese numero valido
+        </mat-error>
+        <mat-error *ngIf="form.get('Progreso')?.hasError('pattern')">
+          Solo ingresar numeros
+        </mat-error>
         </mat-form-field>
         <br />
   
@@ -35,6 +41,16 @@
           <mat-select formControlName="idUsuario">
             @for (ci of listaUsuario; track ci) {
             <mat-option [value]="ci.idUsuario">{{ ci.nombreUsuario }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field>
+          <mat-label>Rutina</mat-label>
+          <mat-select formControlName="idRutina">
+            @for (ci of listarutina; track ci) {
+            <mat-option [value]="ci.idRutina">{{ ci.nombreRutina }}</mat-option>
             }
           </mat-select>
         </mat-form-field>

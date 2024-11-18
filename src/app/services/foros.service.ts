@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Foros } from '../models/Foros';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { CantidadForosByUsuariosDTO } from '../models/CantidadForosByUsuariosDTO';
+import { CantidadMensajesForosDTO } from '../models/CantidadMensajesForosDTO';
 
 const base_url = environment.base
 @Injectable({
@@ -34,5 +36,16 @@ export class ForosService {
   }
   update(foros:Foros){
     return this.http.put(this.url,foros);
+  }
+
+  getCantidadForos(): Observable<CantidadForosByUsuariosDTO[]> {
+    return this.http.get<CantidadForosByUsuariosDTO[]>(
+      `${this.url}/cantidadForos`
+    );
+  }
+  getCantidadMensajeForos(): Observable<CantidadMensajesForosDTO[]> {
+    return this.http.get<CantidadMensajesForosDTO[]>(
+      `${this.url}/CantidadMensajes`
+    );
   }
 }

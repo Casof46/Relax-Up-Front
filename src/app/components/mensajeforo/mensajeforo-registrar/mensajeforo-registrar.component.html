@@ -1,32 +1,44 @@
 <div class="title-container">
-    <div class="container" style="text-align: center; margin: 2%">
-      <h1>Registro de Mensajes en foros</h1>
-    </div>
-    <div class="container" style="text-align: center">
-      <form [formGroup]="form" (submit)="insertar()">
-        <mat-form-field class="example-full-width" >
-          <mat-label>Id</mat-label>
-          <input matInput formControlName="idMensajesFoross" />
-        </mat-form-field>
-        <br />
-  
-        <mat-form-field class="example-full-width">
-          <mat-label>Contenido</mat-label>
-          <input matInput placeholder="contenido" formControlName="contenido" />
-        </mat-form-field>
-  
-        <br />
-        <mat-form-field>
-          <mat-label>Fecha</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="FechaPublicacion" />
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <br />
+  <div class="container" style="text-align: center; margin: 2%">
+    <h1>Registro de Mensajes en Foros</h1>
+  </div>
+  <div class="container" style="text-align: center">
+    <form [formGroup]="form" (submit)="insertar()">
+      
+     
+      <mat-form-field class="example-full-width">
+        <mat-label>Id</mat-label>
+        <input matInput formControlName="idMensajesFoross" />
+      </mat-form-field>
+      <br />
+
+     
+      <mat-form-field class="example-full-width">
+        <mat-label>Contenido</mat-label>
+        <textarea
+          matInput
+          formControlName="contenido"
+          rows="5"
+          cols="50"
+          placeholder="Escribe el contenido del mensaje"
+        ></textarea>
+        <mat-error *ngIf="form.get('contenido')?.hasError('required')">
+          El contenido es obligatorio.
+        </mat-error>
+        <mat-error *ngIf="form.get('contenido')?.hasError('minlength')">
+          El contenido debe tener al menos 3 letras.
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="FechaPublicacion" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br />
 
         <mat-form-field>
           <mat-label>Foros</mat-label>
@@ -46,7 +58,9 @@
             </mat-select>
           </mat-form-field>
         <div style="text-align: center">
-          <button mat-flat-button color="warn">Registrar</button>
+          <button mat-flat-button color="warn" type="submit" [disabled]="form.invalid">
+            Registrar
+          </button>
         </div>
       </form>
     </div>
