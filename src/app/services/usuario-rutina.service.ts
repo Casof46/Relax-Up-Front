@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { UsuarioRutina } from '../models/UsuarioRutina';
 import { HttpClient } from '@angular/common/http';
+import { ProgresoCompletadoDTO } from '../models/ProgresoCompletadoDTO';
 
 const base_url=environment.base;
 @Injectable({
@@ -37,5 +38,8 @@ export class UsuarioRutinaService {
   }
   update(urr: UsuarioRutina) {
     return this.http.put(this.url, urr);
+  }
+  getprogreso():Observable<ProgresoCompletadoDTO[]>{
+    return this.http.get<ProgresoCompletadoDTO[]>(`${this.url}/Progresocompletado`)
   }
 }

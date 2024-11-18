@@ -11,6 +11,9 @@ import { UsuarioRutinaService } from '../../../services/usuario-rutina.service';
 import { Router } from '@angular/router';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { NgIf } from '@angular/common';
+import { Rutina } from '../../../models/Rutina';
+import { RutinaService } from '../../../services/rutina.service';
 
 
 @Component({
@@ -23,7 +26,8 @@ import { provideNativeDateAdapter } from '@angular/material/core';
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    NgIf
   ],
   templateUrl: './usuariorutina-registrar.component.html',
   styleUrl: './usuariorutina-registrar.component.css'
@@ -31,22 +35,29 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 export class UsuariorutinaRegistrarComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   listaUsuario: Usuario[] = [];
+  listarutina: Rutina[]=[];
   usuariorutina: UsuarioRutina = new UsuarioRutina();
+  edicion:boolean=false;
   constructor(
     private formBuilder: FormBuilder,
     private usuarioservice: UsuarioService,
+    private rutinaservice: RutinaService,
     private usuariorutinaservice: UsuarioRutinaService,
     private router: Router
   ) {}
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      IdUsuarioRutina: ['', Validators.required],
+      IdUsuarioRutina: [''],
       FechaRealizacion: ['', Validators.required],
-      Progreso: ['', Validators.required],
+      Progreso: ['', [Validators.required,Validators.min(0),Validators.max(100),Validators.pattern(/^\d+$/)]],
       idUsuario: ['', Validators.required],
+      idRutina:['', Validators.required],
     });
     this.usuarioservice.list().subscribe((data) => {
       this.listaUsuario = data;
+    });
+    this.rutinaservice.list().subscribe((data) => {
+      this.listarutina = data;
     });
   }
   insertar(): void {
@@ -55,11 +66,20 @@ export class UsuariorutinaRegistrarComponent implements OnInit{
       this.usuariorutina.fecharealizacion = this.form.value.FechaRealizacion;
       this.usuariorutina.progreso = this.form.value.Progreso;
       this.usuariorutina.usuario.idUsuario = this.form.value.idUsuario;
-      this.usuariorutinaservice.insert(this.usuariorutina).subscribe((data) => {
-        this.usuariorutinaservice.list().subscribe((data) => {
-          this.usuariorutinaservice.setList(data);
+      this.usuariorutina.rutina.idRutina=this.form.value.idRutina;
+      if (this.edicion) {
+        this.usuariorutinaservice.update(this.usuariorutina).subscribe((data) => {
+          this.usuariorutinaservice.list().subscribe((data) => {
+            this.usuariorutinaservice.setList(data);
+          }); 
         });
-      });
+      } else {
+        this.usuariorutinaservice.insert(this.usuariorutina).subscribe((data) => {
+          this.usuariorutinaservice.list().subscribe((data) => {
+            this.usuariorutinaservice.setList(data);
+          });
+        });
+      }
       this.router.navigate(['UsuarioRutina']);
     }
   }

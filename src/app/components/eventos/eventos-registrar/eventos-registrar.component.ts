@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../../models/Usuario';
 import { Eventos } from '../../../models/Eventos';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuarioService } from '../../../services/usuario.service';
 import { EventosService } from '../../../services/eventos.service';
 import { Router } from '@angular/router';
@@ -11,7 +11,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { Time } from '@angular/common';
 @Component({
   selector: 'app-eventos-registrar',
   standalone: true,
@@ -24,6 +27,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatSelectModule,
     MatDatepickerModule,
     MatButtonModule,
+    MatCheckboxModule,
+    NgxMaterialTimepickerModule,
   ],
   templateUrl: './eventos-registrar.component.html',
   styleUrl: './eventos-registrar.component.css'
@@ -31,24 +36,23 @@ import { MatButtonModule } from '@angular/material/button';
 export class EventosRegistrarComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   listaUsuario: Usuario[] = [];
-  usuariorutina: Eventos = new Eventos();
+  Eventos: Eventos = new Eventos();
   constructor(
     private formBuilder: FormBuilder,
     private usuarioservice: UsuarioService,
-    private usuariorutinaservice: EventosService,
-    private router: Router
+    private eventosservice: EventosService,
+    private router: Router,
+    private _snackBar: MatSnackBar,
   ) {}
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      IdEventos: [''],
-      Titulo: ['', Validators.required],
-      Actividad: ['', Validators.required],
+      Titulo: ['',[Validators.required,Validators.minLength(8)]],
+      Actividad: ['',[Validators.required,Validators.minLength(8)]],
       FechaInicio: ['', Validators.required],
       FechaFin: ['', Validators.required],
-      Hora: ['', Validators.required],
+      Hora: ['', [Validators.required, Validators.pattern(/^\d{2}:\d{2}:\d{2}$/)]],
       Confirmacion: ['', Validators.required],
       IdUsuario: ['', Validators.required],
-
     });
     this.usuarioservice.list().subscribe((data) => {
       this.listaUsuario = data;
@@ -56,20 +60,27 @@ export class EventosRegistrarComponent implements OnInit{
   }
   insertar(): void {
     if (this.form.valid) {
-      this.usuariorutina.ideventos = this.form.value.IdEventos;
-      this.usuariorutina.titulo = this.form.value.Titulo;
-      this.usuariorutina.actividad = this.form.value.Actividad;
-      this.usuariorutina.fechaInicio = this.form.value.FechaInicio;
-      this.usuariorutina.fechaFin = this.form.value.FechaFin;
-      this.usuariorutina.hora = this.form.value.Hora;
-      this.usuariorutina.confirmacion = this.form.value.Confirmacion;
-      this.usuariorutina.usuario.idUsuario = this.form.value.IdUsuario;
-      this.usuariorutinaservice.insert(this.usuariorutina).subscribe((data) => {
-        this.usuariorutinaservice.list().subscribe((data) => {
-          this.usuariorutinaservice.setList(data);
+      this.Eventos.ideventos = this.form.value.IdEventos;
+      this.Eventos.titulo = this.form.value.Titulo;
+      this.Eventos.actividad = this.form.value.Actividad;
+      this.Eventos.fechaInicio = this.form.value.FechaInicio;
+      this.Eventos.fechaFin = this.form.value.FechaFin;
+      this.Eventos.hora = this.form.value.Hora;
+      this.Eventos.confirmacion = this.form.value.Confirmacion;
+      this.Eventos.usuario.idUsuario = this.form.value.IdUsuario;
+      this._snackBar.open('Evento creado con éxito!', 'Cerrar', {
+        duration: 3000
+      })
+      this.eventosservice.insert(this.Eventos).subscribe((data) => {
+        this.eventosservice.list().subscribe((data) => {
+          this.eventosservice.setList(data);
         });
       });
       this.router.navigate(['eventos']);
     }
   }
+  readonly range = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
 }

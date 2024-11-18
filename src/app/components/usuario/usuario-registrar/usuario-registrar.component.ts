@@ -10,6 +10,8 @@ import { Usuario } from '../../../models/Usuario';
 import { UsuarioService } from '../../../services/usuario.service';
 import { RolserviceService } from '../../../services/rolservice.service';
 import { NgIf } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-usuario-registrar',
   standalone: true,
@@ -32,15 +34,16 @@ export class UsuarioRegistrarComponent implements OnInit{
     private formBuilder: FormBuilder,
     private uS: UsuarioService,
     private rS: RolserviceService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      unombre: ['', Validators.required],
-      ucorreo: ['', Validators.required],
-      utelefono: ['', Validators.required],
-      ucontrasena: ['', Validators.required],
-      uprogreso: ['', Validators.required],
+      unombre: ['', [Validators.required,Validators.minLength(3)]],
+      ucorreo: ['', [Validators.required,Validators.email]],
+      utelefono: ['', [Validators.required,Validators.min(900000000),Validators.max(999999999),Validators.pattern(/^\d+$/)]],
+      ucontrasena: ['', [Validators.required, Validators.minLength(8)]],
+      uprogreso: ['', [Validators.required,Validators.min(0),Validators.max(100),Validators.pattern(/^\d+$/)]],
       urol: ['', Validators.required],
     });
     this.rS.list().subscribe((data) => {
@@ -55,6 +58,9 @@ export class UsuarioRegistrarComponent implements OnInit{
       this.user.contrasenaUsuario = this.form.value.ucontrasena;
       this.user.progresoUsuario = this.form.value.uprogreso;
       this.user.rol.idRol = this.form.value.urol;
+      this._snackBar.open('Usuario creado con éxito!', 'Cerrar', {
+        duration: 3000
+      })
       this.uS.insert(this.user).subscribe((data) => {
         this.uS.list().subscribe((data) => {
           this.uS.setList(data);
