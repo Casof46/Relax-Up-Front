@@ -55,6 +55,9 @@
       <mat-icon>pet</mat-icon>
       Gatos
     </button>
+    <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white">
+      <mat-icon>book</mat-icon>Reportes
+    </button>
   </div>
 </mat-toolbar>
 
@@ -105,5 +108,20 @@
 <mat-menu #menuSus="matMenu">
   <button mat-menu-item routerLink="/suscripciones"><mat-icon>assignment</mat-icon>Listar</button>
   <button mat-menu-item routerLink="/suscripciones/nuevo"><mat-icon>person_add</mat-icon>Registrar</button>
+</mat-menu>
+<mat-menu #menuReportes="matMenu">
+  <button mat-menu-item routerLink="/reportes">
+    <mat-icon> pie_chart</mat-icon>
+    Cantidad
+  </button>
+  <button mat-menu-item routerLink="/reportes/suscripciones">
+    <mat-icon> bar_chart</mat-icon>Sumas
+  </button>
+  <button mat-menu-item routerLink="/reportes/Forosporusuario">
+    <mat-icon>calendar_view_day</mat-icon>Foros
+  </button>
+  <button mat-menu-item routerLink="/reportes/Mensajeporforo">
+    <mat-icon>receipt</mat-icon>Mensajes
+  </button>
 </mat-menu>
 <router-outlet></router-outlet>

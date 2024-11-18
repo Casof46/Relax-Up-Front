@@ -3,6 +3,8 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Planes } from '../models/Planes';
 import { Observable, Subject } from 'rxjs';
+import { TotalSuscripcionesbyPlanDTO } from '../models/TotalSuscripcionesbyPlanDTO';
+import { TotalIngresosbyPlanDTO } from '../models/TotalIngresosbyPlanDTO';
 
 
 const base_url = environment.base;
@@ -39,5 +41,14 @@ export class PlanesService {
   }
   update(ci: Planes) {
     return this.http.put(this.url, ci);
+  }
+
+  getCantidad(): Observable<TotalSuscripcionesbyPlanDTO[]> {
+    return this.http.get<TotalSuscripcionesbyPlanDTO[]>(
+      `${this.url}/cantidades`
+    );
+  }
+  getSuma(): Observable<TotalIngresosbyPlanDTO[]> {
+    return this.http.get<TotalIngresosbyPlanDTO[]>(`${this.url}/ingresos`);
   }
 }
