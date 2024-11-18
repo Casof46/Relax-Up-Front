@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
-import { ReporteTotalIngresosComponent } from './reporte-total-ingresos/reporte-total-ingresos.component';
+import { Component } from '@angular/core';
+import { ReporterutinaComponent } from './reporterutina/reporterutina.component';
 
 @Component({
   selector: 'app-reporte',
   standalone: true,
-  imports: [RouterOutlet, ReporteTotalIngresosComponent],
+  imports: [RouterOutlet,ReporterutinaComponent],
   templateUrl: './reporte.component.html',
   styleUrl: './reporte.component.css'
 })

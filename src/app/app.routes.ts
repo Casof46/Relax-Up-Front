@@ -35,6 +35,8 @@ import { ReporteTotalMensajesComponent } from './components/reporte/reporte-tota
 import { ReporteConfirmaronComponent } from './components/reporte/reporte-confirmaron/reporte-confirmaron.component';
 import { UsuarioRegistrarComponent } from './components/usuario/usuario-registrar/usuario-registrar.component';
 import { ReporteProgresoComponent } from './components/reporte/reporte-progreso/reporte-progreso.component';
+import { ReporteComponent } from './components/reporte/reporte.component';
+import { ReporteemergenciaComponent } from './components/reporte/reporteemergencia/reporteemergencia.component';
 
 export const routes: Routes = [
     {
@@ -206,5 +208,15 @@ export const routes: Routes = [
     {
         path: 'reporte-progreso', component:ReporteProgresoComponent,
         canActivate: [seguridadGuard],
-        }
+        },
+    {
+        path: 'reportes',
+        component: ReporteComponent,
+        children: [
+          {
+            path: 'emergencias',
+            component: ReporteemergenciaComponent,
+          },
+        ],
+      },
 ];

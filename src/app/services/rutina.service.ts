@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Rutina } from '../models/Rutina';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { CantidadRutinasByTecnicasRelajacionDTO} from '../models/CantidadRutinasByTecnicasRelajacionDTO';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,10 @@ export class RutinaService {
   }
   update(Rutina:Rutina){
     return this.http.put(this.url,Rutina);
+  }
+  getCantidad(): Observable<CantidadRutinasByTecnicasRelajacionDTO[]> {
+    return this.http.get<CantidadRutinasByTecnicasRelajacionDTO[]>(
+      `${this.url}/cantidadRutinas`
+    );
   }
 }
