@@ -10,6 +10,8 @@ import { Usuario } from '../../../models/Usuario';
 import { UsuarioService } from '../../../services/usuario.service';
 import { RolserviceService } from '../../../services/rolservice.service';
 import { NgIf } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-usuario-registrar',
   standalone: true,
@@ -26,40 +28,42 @@ import { NgIf } from '@angular/common';
 })
 export class UsuarioRegistrarComponent implements OnInit{
   form: FormGroup = new FormGroup({});
-  listarol: Rol[] = [];
-  usuario: Usuario = new Usuario();
+  listaRoles: Rol[] = [];
+  user: Usuario = new Usuario();
   constructor(
     private formBuilder: FormBuilder,
-    private Rolservice: RolserviceService,
-    private usuarioservice: UsuarioService,
-    private router: Router
+    private uS: UsuarioService,
+    private rS: RolserviceService,
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      IdUsuario: ['', Validators.required],
-      NombreUsuario: ['', Validators.required],
-      CorreoUsuario: ['', Validators.required],
-      TelefonoUsuario: ['', Validators.required],
-      ContrasenaUsuario: ['', Validators.required],
-      ProgresoUsuario: ['', Validators.required],
-      IdRol: ['', Validators.required],
+      unombre: ['', [Validators.required,Validators.minLength(3)]],
+      ucorreo: ['', [Validators.required,Validators.email]],
+      utelefono: ['', [Validators.required,Validators.min(900000000),Validators.max(999999999),Validators.pattern(/^\d+$/)]],
+      ucontrasena: ['', [Validators.required, Validators.minLength(8)]],
+      uprogreso: ['', [Validators.required,Validators.min(0),Validators.max(100),Validators.pattern(/^\d+$/)]],
+      urol: ['', Validators.required],
     });
-    this.Rolservice.list().subscribe((data) => {
-      this.listarol = data;
+    this.rS.list().subscribe((data) => {
+      this.listaRoles = data;
     });
   }
   insertar(): void {
     if (this.form.valid) {
-      this.usuario.idUsuario = this.form.value.IdUsuario;
-      this.usuario.nombreUsuario = this.form.value.NombreUsuario;
-      this.usuario.correoUsuario = this.form.value.CorreoUsuario;
-      this.usuario.telefonoUsuario = this.form.value.TelefonoUsuario;
-      this.usuario.contasenaUsuario = this.form.value.ContrasenaUsuario;
-      this.usuario.progresoUsuario = this.form.value.ProgresoUsuario;
-      this.usuario.rol.idRol = this.form.value.IdRol;
-      this.usuarioservice.insert(this.usuario).subscribe((data) => {
-        this.usuarioservice.list().subscribe((data) => {
-          this.usuarioservice.setList(data);
+      this.user.nombreUsuario = this.form.value.unombre;
+      this.user.correoUsuario = this.form.value.ucorreo;
+      this.user.telefonoUsuario = this.form.value.utelefono;
+      this.user.contrasenaUsuario = this.form.value.ucontrasena;
+      this.user.progresoUsuario = this.form.value.uprogreso;
+      this.user.rol.idRol = this.form.value.urol;
+      this._snackBar.open('Usuario creado con éxito!', 'Cerrar', {
+        duration: 3000
+      })
+      this.uS.insert(this.user).subscribe((data) => {
+        this.uS.list().subscribe((data) => {
+          this.uS.setList(data);
         });
       });
       this.router.navigate(['usuarios']);

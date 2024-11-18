@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { RolComponent } from './components/rol/rol.component';
 import { RolRegistrarComponent } from './components/rol/rol-registrar/rol-registrar.component';
-import { UsuarioRegistrarComponent } from './components/usuario/usuario-registrar/usuario-registrar.component';
 import { EventosComponent } from './components/eventos/eventos.component';
 import { EventosRegistrarComponent } from './components/eventos/eventos-registrar/eventos-registrar.component';
 import { UsuariorutinaComponent } from './components/usuariorutina/usuariorutina.component';
@@ -10,7 +9,6 @@ import { UsuariorutinaRegistrarComponent } from './components/usuariorutina/usua
 import { LoginComponent } from './components/login/login.component';
 import { seguridadGuard } from './guard/seguridad.guard';
 import { HomeComponent } from './components/home/home.component';
-import { MusicPlayerComponent } from './components/music-player/music-player.component';
 import { ImagenesgatosComponent } from './components/imagenesgatos/imagenesgatos.component';
 import { ForoComponent } from './components/foro/foro.component';
 import { ForoRegistrarComponent } from './components/foro/foro-registrar/foro-registrar.component';
@@ -34,6 +32,9 @@ import { ReporteComponent } from './components/reporte/reporte.component';
 import { ReporteTotalSuscripcionesComponent } from './components/reporte/reporte-total-suscripciones/reporte-total-suscripciones.component';
 import { ReporteTotalForosComponent } from './components/reporte/reporte-total-foros/reporte-total-foros.component';
 import { ReporteTotalMensajesComponent } from './components/reporte/reporte-total-mensajes/reporte-total-mensajes.component';
+import { ReporteConfirmaronComponent } from './components/reporte/reporte-confirmaron/reporte-confirmaron.component';
+import { UsuarioRegistrarComponent } from './components/usuario/usuario-registrar/usuario-registrar.component';
+import { ReporteProgresoComponent } from './components/reporte/reporte-progreso/reporte-progreso.component';
 
 export const routes: Routes = [
     {
@@ -48,7 +49,8 @@ export const routes: Routes = [
     {
         path: 'usuarios', component:UsuarioComponent,
         children:[
-            {path: 'nuevo',component:UsuarioRegistrarComponent}
+            {path: 'nuevo',component:UsuarioRegistrarComponent},
+            {path: 'ediciones/:id',component:UsuarioRegistrarComponent}
         ],
         canActivate: [seguridadGuard],
     },
@@ -64,6 +66,7 @@ export const routes: Routes = [
         path: 'eventos', component:EventosComponent,
         children:[
             {path: 'nuevo',component:EventosRegistrarComponent},
+            {path: 'ediciones/:id',component:EventosRegistrarComponent}
         ],
         canActivate: [seguridadGuard],
     },
@@ -71,6 +74,7 @@ export const routes: Routes = [
         path: 'UsuarioRutina', component:UsuariorutinaComponent,
         children:[
             {path: 'nuevo',component:UsuariorutinaRegistrarComponent},
+            {path: 'ediciones/:id',component:UsuariorutinaRegistrarComponent}
         ],
         canActivate: [seguridadGuard],
     },
@@ -78,11 +82,6 @@ export const routes: Routes = [
       path: 'homes',
       component: HomeComponent,
       canActivate: [seguridadGuard],  
-    },
-    {
-        path:'music',
-        component: MusicPlayerComponent,
-        canActivate: [seguridadGuard],  
     },
     {
         path:'gatos',
@@ -199,5 +198,13 @@ export const routes: Routes = [
             {path: 'Mensajeporforo',component:ReporteTotalMensajesComponent}
         ],
         canActivate: [seguridadGuard],
-    }
+    },
+    {
+    path: 'reporte-confirmaron', component:ReporteConfirmaronComponent,
+    canActivate: [seguridadGuard],
+    },
+    {
+        path: 'reporte-progreso', component:ReporteProgresoComponent,
+        canActivate: [seguridadGuard],
+        }
 ];

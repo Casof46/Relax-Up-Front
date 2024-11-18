@@ -1,10 +1,11 @@
 <div class="container">
-    <div style="text-align: center; margin: 5%;">
-      <h1>Lista Usuario</h1>
-    </div>
+  <div style="text-align: center; margin: 5%;">
+    <h1>Lista Usuario</h1>
+  </div>
+  <div>
     <div>
       <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
-  
+        
         <ng-container matColumnDef="c1">
           <th mat-header-cell *matHeaderCellDef> Id </th>
           <td mat-cell *matCellDef="let element"> {{element.idUsuario}} </td>
@@ -42,8 +43,8 @@
   
         <ng-container matColumnDef="accion01">
           <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-          <td mat-cell *matCellDef="let element">
-            <mat-icon style="color: red" (click)="delete(element.idUsuario)">delete</mat-icon>
+          <td mat-cell *matCellDef="let element" (click)="delete(element.idUsuario)">
+            <mat-icon  style="color:red">delete</mat-icon>
           </td>
         </ng-container>
   
@@ -57,6 +58,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
     </div>
   </div>
   
