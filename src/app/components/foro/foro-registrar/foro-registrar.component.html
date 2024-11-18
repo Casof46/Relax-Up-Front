@@ -4,13 +4,6 @@
   </div>
   <div class="container" style="text-align: center">
     <form [formGroup]="form" (submit)="insertar()">
-      
-      <!-- Campo ID -->
-      <mat-form-field class="example-full-width">
-        <mat-label>Id</mat-label>
-        <input matInput formControlName="IdForos" />
-      </mat-form-field>
-      <br />
 
       <!-- Campo Título con validaciones -->
       <mat-form-field class="example-full-width">
@@ -32,7 +25,7 @@
           <mat-label>Id del Usuario</mat-label>
           <mat-select formControlName="IdUsuario">
             @for (ci of listaUsuario; track ci) {
-            <mat-option [value]="ci.idUsuario">{{ ci.idUsuario }}</mat-option>
+            <mat-option [value]="ci.idUsuario">{{ ci.nombreUsuario }}</mat-option>
             }
           </mat-select>
         </mat-form-field>

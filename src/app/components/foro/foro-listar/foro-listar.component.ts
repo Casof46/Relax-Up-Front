@@ -24,15 +24,12 @@ export class ForoListarComponent {
   ngOnInit(): void {
   this.forosservice.list().subscribe(data=>{
     this.datasource = new MatTableDataSource(data)
+    this.datasource.paginator = this.paginator
   });
   this.forosservice.getList().subscribe(data=>{
     this.datasource = new MatTableDataSource(data);
+    this.datasource.paginator = this.paginator
   })
-  }
-  ngAfterViewInit(): void {
-    if (this.paginator) {
-      this.datasource.paginator = this.paginator;
-    }
   }
   delete(id: number) {
     this.forosservice.delete(id).subscribe(

@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angular/forms';
+import {
+  FormGroup,
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -80,7 +86,8 @@ export class MensajeforoRegistrarComponent implements OnInit {
       this.mensajesforos.contenido = this.form.value.contenido;
       this.mensajesforos.fechaPublicacion = this.form.value.FechaPublicacion;
       this.mensajesforos.foros.idForos = this.form.value.mensajesforosforos;
-      this.mensajesforos.usuario.idUsuario = this.form.value.mensajesforosusuarios;
+      this.mensajesforos.usuario.idUsuario =
+        this.form.value.mensajesforosusuarios;
 
       if (this.edicion) {
         this.mensajeforoservice.update(this.mensajesforos).subscribe(
@@ -102,6 +109,7 @@ export class MensajeforoRegistrarComponent implements OnInit {
     } else {
       this.showSnackBar('Por favor, complete los campos requeridos');
     }
+    this.router.navigate(['mensajeforos']);
   }
 
   init() {

@@ -5,6 +5,7 @@ import { SuscripcionesService } from '../../../services/suscripciones.service';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-suscripcion-listar',
@@ -27,7 +28,7 @@ export class SuscripcionListarComponent implements OnInit{
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
-  constructor(private suS: SuscripcionesService) {}
+  constructor(private suS: SuscripcionesService, private snackBar: MatSnackBar) {}
   ngOnInit(): void {
     this.suS.list().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);
@@ -48,6 +49,9 @@ export class SuscripcionListarComponent implements OnInit{
       this.suS.list().subscribe((data) => {
         this.suS.setList(data);
       });
+    });
+    this.snackBar.open('Se eliminó de manera correcta', 'Cerrar', {
+      duration: 5000,
     });
   }
 }

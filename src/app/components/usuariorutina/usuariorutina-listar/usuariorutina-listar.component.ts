@@ -16,7 +16,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class UsuariorutinaListarComponent {
   datasource: MatTableDataSource<UsuarioRutina> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1','c2','c3','c4','c5','accion01'];
+  displayedColumns: string[] = ['c1','c2','c3','c4','c5','accion01','accion02'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
     private urs: UsuarioRutinaService,

@@ -5,17 +5,18 @@ import { EventosService } from '../../../services/eventos.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-eventos-listar',
   standalone: true,
-  imports: [MatTableModule,MatPaginator,MatIconModule],
+  imports: [MatTableModule,MatPaginator,MatIconModule,RouterLink],
   templateUrl: './eventos-listar.component.html',
   styleUrl: './eventos-listar.component.css'
 })
 export class EventosListarComponent implements OnInit{
   datasource: MatTableDataSource<Eventos> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1','c2','c3','c4','c5','c6','c7','c8','accion01'];
+  displayedColumns: string[] = ['c1','c2','c3','c4','c5','c6','c7','c8','accion01','accion02'];
   constructor(private eventosservice:EventosService,private snackBar: MatSnackBar){}
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

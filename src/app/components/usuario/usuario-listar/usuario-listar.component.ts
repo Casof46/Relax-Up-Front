@@ -17,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UsuarioListarComponent implements OnInit{
   datasource: MatTableDataSource<Usuario> = new MatTableDataSource();
-  displayedColumns:string[]=['c1', 'c2', 'c3', 'c4', 'c6', 'c7','accion01']
+  displayedColumns:string[]=['c1', 'c2', 'c3', 'c4', 'c6', 'c7','accion01','accion02']
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private usuario:UsuarioService,private snackBar: MatSnackBar){}
   ngOnInit(): void {

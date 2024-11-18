@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -8,12 +8,13 @@ import { UsuarioRutina } from '../../../models/UsuarioRutina';
 import { Usuario } from '../../../models/Usuario';
 import { UsuarioService } from '../../../services/usuario.service';
 import { UsuarioRutinaService } from '../../../services/usuario-rutina.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { NgIf } from '@angular/common';
 import { Rutina } from '../../../models/Rutina';
 import { RutinaService } from '../../../services/rutina.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -38,14 +39,22 @@ export class UsuariorutinaRegistrarComponent implements OnInit{
   listarutina: Rutina[]=[];
   usuariorutina: UsuarioRutina = new UsuarioRutina();
   edicion:boolean=false;
+  id: number = 0;
   constructor(
     private formBuilder: FormBuilder,
     private usuarioservice: UsuarioService,
     private rutinaservice: RutinaService,
     private usuariorutinaservice: UsuarioRutinaService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = data['id'] > 0;
+      this.init();
+    });
     this.form = this.formBuilder.group({
       IdUsuarioRutina: [''],
       FechaRealizacion: ['', Validators.required],
@@ -81,6 +90,22 @@ export class UsuariorutinaRegistrarComponent implements OnInit{
         });
       }
       this.router.navigate(['UsuarioRutina']);
+      this.snackBar.open('Se registro de manera exitosa', 'Cerrar', {
+        duration: 3000,
+      });
+    }
+  }
+  init(){
+    if(this.edicion){
+      this.usuariorutinaservice.listId(this.id).subscribe((data)=>{
+        this.form=new FormGroup({
+          IdUsuarioRutina:new FormControl(data.idusuariorutina),
+          FechaRealizacion:new FormControl(data.fecharealizacion),
+          Progreso:new FormControl(data.progreso),
+          idUsuario:new FormControl(data.usuario.idUsuario),
+          idRutina:new FormControl(data.rutina.idRutina),
+        })
+      })
     }
   }
 }

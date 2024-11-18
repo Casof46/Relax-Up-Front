@@ -40,170 +40,152 @@ import { ReporteTotalIngresosComponent } from './components/reporte/reporte-tota
 import { ReporterutinaComponent } from './components/reporte/reporterutina/reporterutina.component';
 
 export const routes: Routes = [
-    {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full',
-      },
-      {
-        path: 'login',
-        component: LoginComponent,
-      },
-    {
-        path: 'usuarios', component:UsuarioComponent,
-        children:[
-            {path: 'nuevo',component:UsuarioRegistrarComponent},
-            {path: 'ediciones/:id',component:UsuarioRegistrarComponent}
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'rol', component:RolComponent,
-        children:[
-            {path: 'nuevo',component:RolRegistrarComponent},
-            {path: 'ediciones/:id',component:RolRegistrarComponent}
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'eventos', component:EventosComponent,
-        children:[
-            {path: 'nuevo',component:EventosRegistrarComponent},
-            {path: 'ediciones/:id',component:EventosRegistrarComponent}
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'UsuarioRutina', component:UsuariorutinaComponent,
-        children:[
-            {path: 'nuevo',component:UsuariorutinaRegistrarComponent},
-            {path: 'ediciones/:id',component:UsuariorutinaRegistrarComponent}
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-      path: 'homes',
-      component: HomeComponent,
-      canActivate: [seguridadGuard],  
-    },
-    {
-        path:'gatos',
-        component: ImagenesgatosComponent,
-        canActivate: [seguridadGuard],  
-    },
-    {
-        path: 'foross', component:ForoComponent,
-        children:[
-            {path: 'nuevo',component:ForoRegistrarComponent},
-            {path: 'ediciones/:id',component:ForoRegistrarComponent},
-
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'mensajeforos', component:MensajeforoComponent,
-        children:[
-            {path: 'nuevo',component:MensajeforoRegistrarComponent},
-            {path: 'ediciones/:id',component:MensajeforoRegistrarComponent},
-
-        ],
-        canActivate: [seguridadGuard],
-    }
-    ,
-    {
-        path: 'rutina', component:RutinaComponent,
-        children:[
-            {path: 'nuevo',component:RutinaRegistrarComponent},
-            {path: 'ediciones/:id',component:RutinaRegistrarComponent},
-
-        ],
-        canActivate: [seguridadGuard],
-    }
-    ,
-    {
-        path: 'ejerciciorutinas', component:EjerciciorutinaComponent,
-        children:[
-            {path: 'nuevo',component:EjerciciorutinaRegistrarComponent},
-            {path: 'ediciones/:id',component:EjerciciorutinaRegistrarComponent},
-
-        ],
-        canActivate: [seguridadGuard],
-    }
-    ,
-    {
-        path: 'tecnicasrelajacion', component:TecnicarelajacionComponent,
-        children:[
-            {path: 'nuevo',component:TecnicarelajacionRegistrarComponent},
-            {path: 'ediciones/:id',component:TecnicarelajacionRegistrarComponent},
-
-        ],
-        canActivate: [seguridadGuard],
-    }
-    ,
-    {
-        path: 'emergencias', component:EmergenciaComponent,
-        children:[
-            {path: 'nuevo',component:EmergenciaRegistrarComponent},
-            {path: 'ediciones/:id',component:EmergenciaRegistrarComponent},
-
-        ],
-        canActivate: [seguridadGuard],
-    }
-    ,
-    {
-        path: 'tecnicasrelajacion', component:TecnicarelajacionComponent,
-        children:[
-            {path: 'nuevo',component:TecnicarelajacionRegistrarComponent},
-            {path: 'ediciones/:id',component:TecnicarelajacionRegistrarComponent},
-
-        ],
-        canActivate: [seguridadGuard],
-    }
-    ,
-    {
-        path: 'emergencias', component:EmergenciaComponent,
-        children:[
-            {path: 'nuevo',component:EmergenciaRegistrarComponent},
-            {path: 'ediciones/:id',component:EmergenciaRegistrarComponent},
-
-        ],
-        canActivate: [seguridadGuard],
-    },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'usuarios',
+    component: UsuarioComponent,
+    children: [
+      { path: 'nuevo', component: UsuarioRegistrarComponent },
+      { path: 'ediciones/:id', component: UsuarioRegistrarComponent },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'rol',
+    component: RolComponent,
+    children: [
+      { path: 'nuevo', component: RolRegistrarComponent },
+      { path: 'ediciones/:id', component: RolRegistrarComponent },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'eventos',
+    component: EventosComponent,
+    children: [
+      { path: 'nuevo', component: EventosRegistrarComponent },
+      { path: 'ediciones/:id', component: EventosRegistrarComponent },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'UsuarioRutina',
+    component: UsuariorutinaComponent,
+    children: [
+      { path: 'nuevo', component: UsuariorutinaRegistrarComponent },
+      { path: 'ediciones/:id', component: UsuariorutinaRegistrarComponent },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'homes',
+    component: HomeComponent,
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'gatos',
+    component: ImagenesgatosComponent,
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'foross',
+    component: ForoComponent,
+    children: [
+      { path: 'nuevo', component: ForoRegistrarComponent },
+      { path: 'ediciones/:id', component: ForoRegistrarComponent },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'mensajeforos',
+    component: MensajeforoComponent,
+    children: [
+      { path: 'nuevo', component: MensajeforoRegistrarComponent },
+      { path: 'ediciones/:id', component: MensajeforoRegistrarComponent },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'rutina',
+    component: RutinaComponent,
+    children: [
+      { path: 'nuevo', component: RutinaRegistrarComponent },
+      { path: 'ediciones/:id', component: RutinaRegistrarComponent },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'ejerciciorutinas',
+    component: EjerciciorutinaComponent,
+    children: [
+      { path: 'nuevo', component: EjerciciorutinaRegistrarComponent },
+      { path: 'ediciones/:id', component: EjerciciorutinaRegistrarComponent },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'tecnicasrelajacion',
+    component: TecnicarelajacionComponent,
+    children: [
+      { path: 'nuevo', component: TecnicarelajacionRegistrarComponent },
+      { path: 'ediciones/:id', component: TecnicarelajacionRegistrarComponent },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'emergencias',
+    component: EmergenciaComponent,
+    children: [
+      { path: 'nuevo', component: EmergenciaRegistrarComponent },
+      { path: 'ediciones/:id', component: EmergenciaRegistrarComponent },
+    ],
+    canActivate: [seguridadGuard],
+  },
     {
         path: 'planes', component:PlanesmembresiaComponent,
         children:[
             {path: 'nuevo',component:PlanesmembresiaRegistrarComponent},
-            {path:'ediciones/:id',component:PlanesmembresiaComponent}
-        ],
-        canActivate: [seguridadGuard],
+            {path:'ediciones/:id',component:PlanesmembresiaRegistrarComponent}
+        ]
     },
-    {
-        path: 'suscripciones', component:SuscripcionComponent,
-        children:[
-            {path: 'nuevo',component:SuscripcionRegistrarComponent},
-            {path:'ediciones/:id',component:SuscripcionRegistrarComponent}
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'metodos', component:MetodopagoComponent,
-        children:[
-            {path: 'nuevo',component:MetodopagoRegistrarComponent},
-            {path:'ediciones/:id',component:MetodopagoRegistrarComponent}
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'reportes', component:ReporteComponent,
-        children:[
-            {path: 'reporte-confirmaron', component:ReporteConfirmaronComponent},
-            {path: 'reporte-progreso', component:ReporteProgresoComponent},
-            {path: 'Forosporusuario',component:ReporteTotalForosComponent},
-            {path: 'totalingresos',component:ReporteTotalIngresosComponent},
-            {path: 'Mensajeporforo',component:ReporteTotalMensajesComponent},
-            {path: 'suscripciones',component:ReporteTotalSuscripcionesComponent},
-            {path: 'emergencias',component: ReporteemergenciaComponent},
-        ],
-        canActivate: [seguridadGuard],
-    }
+  {
+    path: 'suscripciones',
+    component: SuscripcionComponent,
+    children: [
+      { path: 'nuevo', component: SuscripcionRegistrarComponent },
+      { path: 'ediciones/:id', component: SuscripcionRegistrarComponent },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'metodos',
+    component: MetodopagoComponent,
+    children: [
+      { path: 'nuevo', component: MetodopagoRegistrarComponent },
+      { path: 'ediciones/:id', component: MetodopagoRegistrarComponent },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'reportes',
+    component: ReporteComponent,
+    children: [
+      { path: 'reporte-confirmaron', component: ReporteConfirmaronComponent },
+      { path: 'reporte-progreso', component: ReporteProgresoComponent },
+      { path: 'Forosporusuario', component: ReporteTotalForosComponent },
+      { path: 'totalingresos', component: ReporteTotalIngresosComponent },
+      { path: 'Mensajeporforo', component: ReporteTotalMensajesComponent },
+      { path: 'suscripciones', component: ReporteTotalSuscripcionesComponent },
+      { path: 'emergencias', component: ReporteemergenciaComponent },
+    ],
+    canActivate: [seguridadGuard],
+  },
 ];

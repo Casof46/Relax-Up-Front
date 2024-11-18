@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angular/forms';
+import {
+  FormGroup,
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -61,7 +67,11 @@ export class ForoRegistrarComponent implements OnInit {
       IdForos: [''],
       Titulo: [
         '',
-        [Validators.required, Validators.minLength(3), this.localDuplicateValidator()],
+        [
+          Validators.required,
+          Validators.minLength(3),
+          this.localDuplicateValidator(),
+        ],
       ],
       IdUsuario: ['', Validators.required],
     });
@@ -96,7 +106,6 @@ export class ForoRegistrarComponent implements OnInit {
             this.forosservice.list().subscribe((data) => {
               this.forosservice.setList(data);
             });
-            this.router.navigate(['foross']);
           },
           (error) => this.handleError(error, 'Error al registrar el foro')
         );
@@ -104,6 +113,7 @@ export class ForoRegistrarComponent implements OnInit {
     } else {
       this.showSnackBar('Por favor, complete los campos requeridos');
     }
+    this.router.navigate(['foross']);
   }
 
   init() {
@@ -119,7 +129,9 @@ export class ForoRegistrarComponent implements OnInit {
   }
 
   // Validador personalizado para evitar títulos duplicados
-  localDuplicateValidator(): (control: FormControl) => { [key: string]: any } | null {
+  localDuplicateValidator(): (
+    control: FormControl
+  ) => { [key: string]: any } | null {
     return (control: FormControl) => {
       if (!control.value) {
         return null; // Si no hay valor, no valida nada
