@@ -24,6 +24,8 @@ import { EjerciciorutinaComponent } from './components/ejerciciorutina/ejercicio
 import { EjerciciorutinaRegistrarComponent } from './components/ejerciciorutina/ejerciciorutina-registrar/ejerciciorutina-registrar.component';
 import { ForoListarComponent } from './components/foro/foro-listar/foro-listar.component';
 import { MensajeforoListarComponent } from './components/mensajeforo/mensajeforo-listar/mensajeforo-listar.component';
+import { ReporteComponent } from './components/reporte/reporte.component';
+import { ReporteemergenciaComponent } from './components/reporte/reporteemergencia/reporteemergencia.component';
 
 export const routes: Routes = [
     {
@@ -116,5 +118,15 @@ export const routes: Routes = [
 
         ],
         canActivate: [seguridadGuard],
-    }
+    },
+    {
+        path: 'reportes',
+        component: ReporteComponent,
+        children: [
+          {
+            path: 'emergencias',
+            component: ReporteemergenciaComponent,
+          },
+        ],
+      },
 ];

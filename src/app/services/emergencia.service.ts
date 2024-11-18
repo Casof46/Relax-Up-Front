@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Emergencia } from '../models/Emergencia';
 import { HttpClient } from '@angular/common/http';
+import { CantidadEmergenciasByUsuariosDTO } from '../models/CantidadEmergenciasByUsuariosDTO';
 
 const base_url = environment.base;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmergenciaService {
   private url = `${base_url}/emergencias`;
@@ -24,7 +25,7 @@ export class EmergenciaService {
   getList() {
     return this.listaCambio.asObservable();
   }
-  
+
   setList(listaNueva: Emergencia[]) {
     this.listaCambio.next(listaNueva);
   }
@@ -38,5 +39,10 @@ export class EmergenciaService {
   }
   update(em: Emergencia) {
     return this.http.put(this.url, em);
+  }
+  getCantidad(): Observable<CantidadEmergenciasByUsuariosDTO[]> {
+    return this.http.get<CantidadEmergenciasByUsuariosDTO[]>(
+      `${this.url}/cantidadEmergencias`
+    );
   }
 }

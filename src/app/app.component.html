@@ -31,6 +31,9 @@
       <mat-icon>folder_shared</mat-icon>
       Ejercicios de Rutinas
     </button>
+    <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white">
+      <mat-icon>book</mat-icon>Reportes
+    </button>
   </div>
 </mat-toolbar>
 
@@ -61,5 +64,14 @@
 <mat-menu #menuejerciciorutina="matMenu">
   <button mat-menu-item routerLink="/ejerciciorutinas">Listar</button>
   <button mat-menu-item routerLink="/ejerciciorutinas/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuReportes="matMenu">
+  <button mat-menu-item routerLink="/reportes">
+    <mat-icon> pie_chart</mat-icon>
+    RutinaS
+  </button>
+  <button mat-menu-item routerLink="/reportes/emergencias">
+    <mat-icon> bar_chart</mat-icon>EmergenciaS
+  </button>
 </mat-menu>
 <router-outlet></router-outlet>

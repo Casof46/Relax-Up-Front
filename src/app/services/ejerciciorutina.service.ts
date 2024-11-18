@@ -34,4 +34,5 @@ export class EjerciciorutinaService {
   update(ejerciciorutina:EjercicioRutina){
     return this.http.put(this.url,ejerciciorutina);
   }
+  
 }
