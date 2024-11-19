@@ -5,7 +5,11 @@
   <div class="container" style="text-align: center">
     <form [formGroup]="form" (submit)="insertar()">
       
-
+      <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-label>Id</mat-label>
+        <input matInput placeholder="Id" formControlName="IdRutina" />
+      </mat-form-field>
+      <br />
       <!-- Campo Nombre -->
       <mat-form-field class="example-full-width">
         <mat-label>Nombre</mat-label>
